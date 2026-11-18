@@ -9,25 +9,30 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Deep obsidian & rich charcoal palette
-        void: "#070709",
-        surface: "#0f0f13",
-        "surface-elevated": "#15151c",
-        panel: "#0f0f13",
-        line: "rgba(255, 255, 255, 0.08)",
-        "line-strong": "rgba(255, 255, 255, 0.16)",
-        ink: "#f5f5f7",
-        muted: "#94949e",
-        faint: "#4e4e58",
-        // Editorial Accent System
-        accent: "#C5F82A", // Muted electric lime
-        "accent-dim": "rgba(197, 248, 42, 0.28)",
-        "accent-soft": "rgba(197, 248, 42, 0.08)",
-        "accent-hover": "#D4F933",
-        // Secondary editorial highlights for projects & badges
-        cyan: "#38bdf8",
-        violet: "#a78bfa",
-        ok: "#22c55e",
+        // Architectural Dark & Warm Ivory Palette
+        void: "#0a0b0d",             // Deep graphite obsidian
+        surface: "#121418",          // Rich dark architectural charcoal
+        "surface-elevated": "#191c22", // Elevated stone
+        panel: "#121418",
+        line: "rgba(238, 235, 227, 0.08)",
+        "line-strong": "rgba(238, 235, 227, 0.16)",
+        
+        // Editorial Warm Ivory & Muted Tones
+        ivory: "#f3f0e8",            // Warm editorial ivory (primary text)
+        "ivory-muted": "#d8d4c8",    // Soft stone
+        ink: "#f3f0e8",
+        muted: "#96948a",            // Muted cement
+        faint: "#55544e",            // Subtle slate
+        
+        // Distinctive Creative Accents
+        olive: "#9db38a",            // Muted olive / sage
+        "olive-dim": "rgba(157, 179, 138, 0.25)",
+        "olive-soft": "rgba(157, 179, 138, 0.08)",
+        accent: "#cce885",           // Luminous chartreuse / lime silk
+        "accent-dim": "rgba(204, 232, 133, 0.28)",
+        "accent-soft": "rgba(204, 232, 133, 0.08)",
+        "accent-hover": "#daf593",
+        amber: "#df9b56",            // Warm raw amber accent
       },
       fontFamily: {
         display: ["var(--font-display)", "sans-serif"],
@@ -35,7 +40,7 @@ const config: Config = {
         mono: ["var(--font-mono)", "monospace"],
       },
       letterSpacing: {
-        widest2: "0.22em",
+        widest2: "0.26em",
         tightest: "-0.04em",
       },
     },

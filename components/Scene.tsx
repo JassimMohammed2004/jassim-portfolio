@@ -4,10 +4,10 @@ import { useEffect, useRef } from "react";
 import { prefersReducedMotion } from "@/lib/utils";
 
 /**
- * Atmospheric Background Canvas.
- * Blends slow, cinematic gradient currents, subtle ambient light waves,
- * and high-definition particle lattices in deep charcoal and muted lime.
- * Zero layout shifts, hardware-accelerated 60fps, touch-safe.
+ * Cinematic Studio Atmosphere Canvas.
+ * Generates slow, sweeping architectural light curtains, subtle atmospheric depth,
+ * and high-definition particle illumination in warm ivory and muted olive tones.
+ * Provides rich visual depth and subtle parallax reaction without distracting from content.
  */
 export default function Scene() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -26,16 +26,16 @@ export default function Scene() {
 
     const mouse = { x: -9999, y: -9999, targetX: -9999, targetY: -9999 };
 
-    interface Particle {
+    interface LightOrb {
       x: number;
       y: number;
+      radius: number;
+      color: string;
       vx: number;
       vy: number;
-      radius: number;
-      baseAlpha: number;
     }
 
-    let particles: Particle[] = [];
+    let orbs: LightOrb[] = [];
 
     function resize() {
       if (!canvas) return;
@@ -47,18 +47,33 @@ export default function Scene() {
       canvas.height = height * dpr;
       ctx?.scale(dpr, dpr);
 
-      const count = width < 768 ? 24 : 44;
-      particles = [];
-      for (let i = 0; i < count; i++) {
-        particles.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.22,
-          vy: (Math.random() - 0.5) * 0.22,
-          radius: Math.random() * 1.6 + 0.8,
-          baseAlpha: Math.random() * 0.35 + 0.15,
-        });
-      }
+      // Create atmospheric ambient light blooms
+      orbs = [
+        {
+          x: width * 0.25,
+          y: height * 0.3,
+          radius: Math.min(width, height) * 0.45,
+          color: "rgba(157, 179, 138, 0.07)", // Olive aura
+          vx: 0.12,
+          vy: 0.08,
+        },
+        {
+          x: width * 0.75,
+          y: height * 0.5,
+          radius: Math.min(width, height) * 0.5,
+          color: "rgba(204, 232, 133, 0.05)", // Muted chartreuse silk
+          vx: -0.1,
+          vy: 0.1,
+        },
+        {
+          x: width * 0.5,
+          y: height * 0.8,
+          radius: Math.min(width, height) * 0.4,
+          color: "rgba(223, 155, 86, 0.04)", // Warm amber horizon
+          vx: 0.08,
+          vy: -0.09,
+        },
+      ];
     }
 
     resize();
@@ -79,69 +94,55 @@ export default function Scene() {
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("mouseleave", onMouseLeave);
 
-    let time = 0;
+    let t = 0;
     function render() {
-      time += 0.006;
+      t += 0.005;
       ctx!.clearRect(0, 0, width, height);
 
-      mouse.x += (mouse.targetX - mouse.x) * 0.05;
-      mouse.y += (mouse.targetY - mouse.y) * 0.05;
+      mouse.x += (mouse.targetX - mouse.x) * 0.04;
+      mouse.y += (mouse.targetY - mouse.y) * 0.04;
 
-      // Draw subtle cinematic radial glow under mouse or center
-      const auraX = mouse.x > 0 ? mouse.x : width * 0.75;
-      const auraY = mouse.y > 0 ? mouse.y : height * 0.35;
-      const grad = ctx!.createRadialGradient(auraX, auraY, 10, auraX, auraY, width < 768 ? 240 : 420);
-      grad.addColorStop(0, "rgba(197, 248, 42, 0.045)");
-      grad.addColorStop(0.5, "rgba(56, 189, 248, 0.02)");
-      grad.addColorStop(1, "transparent");
-      ctx!.fillStyle = grad;
-      ctx!.fillRect(0, 0, width, height);
+      // Render floating cinematic ambient light orbs
+      for (const orb of orbs) {
+        orb.x += orb.vx + Math.sin(t) * 0.2;
+        orb.y += orb.vy + Math.cos(t * 0.8) * 0.2;
 
-      // Update and draw particles
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.x += p.vx + Math.sin(time + i) * 0.1;
-        p.y += p.vy + Math.cos(time + i * 0.8) * 0.1;
+        if (orb.x < -orb.radius) orb.x = width + orb.radius;
+        if (orb.x > width + orb.radius) orb.x = -orb.radius;
+        if (orb.y < -orb.radius) orb.y = height + orb.radius;
+        if (orb.y > height + orb.radius) orb.y = -orb.radius;
 
-        if (p.x < 0) p.x = width;
-        if (p.x > width) p.x = 0;
-        if (p.y < 0) p.y = height;
-        if (p.y > height) p.y = 0;
+        const radial = ctx!.createRadialGradient(
+          orb.x,
+          orb.y,
+          orb.radius * 0.05,
+          orb.x,
+          orb.y,
+          orb.radius
+        );
+        radial.addColorStop(0, orb.color);
+        radial.addColorStop(1, "transparent");
 
-        // Mouse proximity gentle deflection
-        const dx = p.x - mouse.x;
-        const dy = p.y - mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 130) {
-          const force = (130 - dist) / 130;
-          p.x += (dx / dist) * force * 1.5;
-          p.y += (dy / dist) * force * 1.5;
-        }
-
-        ctx!.fillStyle = dist < 120 ? "#C5F82A" : `rgba(245, 245, 247, ${p.baseAlpha})`;
+        ctx!.fillStyle = radial;
         ctx!.beginPath();
-        ctx!.arc(p.x, p.y, dist < 120 ? p.radius + 0.6 : p.radius, 0, Math.PI * 2);
+        ctx!.arc(orb.x, orb.y, orb.radius, 0, Math.PI * 2);
         ctx!.fill();
       }
 
-      // Draw faint topological network lines
-      const maxDist = width < 768 ? 100 : 135;
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < maxDist) {
-            const alpha = (1 - dist / maxDist) * 0.14;
-            ctx!.strokeStyle = `rgba(197, 248, 42, ${alpha})`;
-            ctx!.lineWidth = 0.65;
-            ctx!.beginPath();
-            ctx!.moveTo(particles[i].x, particles[i].y);
-            ctx!.lineTo(particles[j].x, particles[j].y);
-            ctx!.stroke();
-          }
-        }
+      // Cursor spotlight interaction
+      if (mouse.x > 0 && mouse.y > 0) {
+        const spot = ctx!.createRadialGradient(
+          mouse.x,
+          mouse.y,
+          0,
+          mouse.x,
+          mouse.y,
+          width < 768 ? 220 : 380
+        );
+        spot.addColorStop(0, "rgba(204, 232, 133, 0.04)");
+        spot.addColorStop(1, "transparent");
+        ctx!.fillStyle = spot;
+        ctx!.fillRect(0, 0, width, height);
       }
 
       animId = requestAnimationFrame(render);
@@ -159,10 +160,17 @@ export default function Scene() {
 
   return (
     <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
-      <canvas ref={canvasRef} className="h-full w-full opacity-70" />
-      {/* Editorial top and bottom vignette overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-void via-transparent to-void opacity-90" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(197,248,42,0.06),rgba(255,255,255,0))]" />
+      <canvas ref={canvasRef} className="h-full w-full" />
+      {/* Studio lighting top/bottom vignette */}
+      <div className="absolute inset-0 bg-gradient-to-b from-void via-transparent to-void opacity-80" />
+      {/* Subtle atmospheric architectural scan lines */}
+      <div
+        className="absolute inset-0 opacity-[0.035] mix-blend-overlay"
+        style={{
+          backgroundImage: `linear-gradient(rgba(243, 240, 232, 0.4) 1px, transparent 1px)`,
+          backgroundSize: "100% 4px",
+        }}
+      />
     </div>
   );
 }

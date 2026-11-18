@@ -19,19 +19,19 @@ export default function Section({
   className?: string;
 }) {
   return (
-    <section id={id} className={cn("relative border-t border-line px-6 py-24 md:px-12 md:py-32", className)}>
+    <section id={id} className={cn("relative border-t border-line/70 px-6 py-28 md:px-12 md:py-36", className)}>
       <div className="mx-auto max-w-6xl">
-        <Reveal className="mb-12 md:mb-16">
+        <Reveal className="mb-14 md:mb-20">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-xs font-medium text-accent">{index}</span>
-            <span className="h-[1px] w-6 bg-accent/40" />
+            <span className="font-mono text-xs font-semibold text-olive">{index}</span>
+            <span className="h-[1px] w-8 bg-olive/40" />
             <p className="section-label">{label}</p>
           </div>
-          <h2 className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink md:text-4xl">
+          <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tightest text-ivory sm:text-4xl md:text-5xl">
             {title}
           </h2>
           {description && (
-            <p className="mt-3 max-w-2xl text-base text-muted leading-relaxed">
+            <p className="mt-4 max-w-2xl text-base text-muted leading-relaxed">
               {description}
             </p>
           )}

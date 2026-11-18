@@ -19,8 +19,8 @@ export default function Skills() {
     <Section
       id="skills"
       index="02"
-      label="Capabilities & Tooling"
-      title="Categorized Technology Matrix"
+      label="Capabilities &amp; Tooling"
+      title="Architecture &amp; Intelligence Stack"
       description="A structured index of validated languages, machine learning frameworks, data libraries, and software engineering tools."
     >
       <motion.div
@@ -36,22 +36,22 @@ export default function Skills() {
             <motion.div
               key={cat.category}
               variants={cardItem}
-              whileHover={{ y: -3, borderColor: "rgba(255, 255, 255, 0.18)" }}
+              whileHover={{ y: -3, borderColor: "rgba(157, 179, 138, 0.4)" }}
               transition={{ duration: 0.25 }}
-              className="flex h-full flex-col justify-between rounded-xl border border-line bg-surface p-6 transition-colors hover:bg-surface-elevated/90"
+              className="flex h-full flex-col justify-between rounded-[24px] border border-line bg-surface p-7 transition-colors hover:bg-surface-elevated/90"
             >
               <div>
                 {/* Category header */}
                 <div className="flex items-center gap-3 border-b border-line pb-4">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-md border border-line bg-surface-elevated text-accent transition-transform duration-200 group-hover:scale-105">
-                    <Icon size={16} strokeWidth={1.8} />
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-line bg-surface-elevated text-olive transition-transform duration-200 group-hover:scale-105">
+                    <Icon size={17} strokeWidth={1.8} />
                   </div>
                   <div>
-                    <h3 className="font-display text-sm font-medium text-ink">
+                    <h3 className="font-display text-sm font-semibold text-ivory">
                       {cat.category}
                     </h3>
                     <span className="font-mono text-[10px] text-faint">
-                      {cat.skills.length} confirmed tools
+                      {cat.skills.length} verified technologies
                     </span>
                   </div>
                 </div>
@@ -65,11 +65,11 @@ export default function Skills() {
                     <motion.span
                       key={skill}
                       variants={badgeItem}
-                      whileHover={{ scale: 1.05, borderColor: "rgba(197, 248, 42, 0.5)", color: "#f5f5f5" }}
+                      whileHover={{ scale: 1.05, borderColor: "rgba(157, 179, 138, 0.6)", color: "#f3f0e8" }}
                       transition={{ duration: 0.15 }}
-                      className="inline-flex cursor-default items-center gap-1.5 rounded-md border border-line bg-surface-elevated/80 px-2.5 py-1 font-mono text-xs text-ink/90 transition-colors"
+                      className="inline-flex cursor-default items-center gap-1.5 rounded-lg border border-line bg-surface-elevated/80 px-2.5 py-1.5 font-mono text-xs text-ivory-muted transition-colors"
                     >
-                      <span className="h-1 w-1 rounded-full bg-accent/80" />
+                      <span className="h-1 w-1 rounded-full bg-olive" />
                       {skill}
                     </motion.span>
                   ))}
@@ -77,7 +77,7 @@ export default function Skills() {
               </div>
 
               <div className="mt-6 border-t border-line/40 pt-3 text-[11px] font-mono text-faint">
-                Active in ongoing engineering
+                Active in engineering workflow
               </div>
             </motion.div>
           );

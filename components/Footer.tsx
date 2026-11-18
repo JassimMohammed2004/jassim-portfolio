@@ -8,49 +8,49 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-line px-6 py-12 md:px-12 bg-void">
+    <footer className="border-t border-line/70 px-6 py-14 md:px-12 bg-void">
       <div className="mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:items-center md:justify-between">
         {/* Brand and role */}
         <div>
-          <p className="font-display text-base font-medium text-ink">
+          <p className="font-display text-lg font-bold text-ivory">
             {profile.name}
-            <span className="ml-2 font-mono text-xs text-accent">/ AI &amp; Software</span>
+            <span className="ml-2 font-mono text-xs text-olive font-normal">/ AI &amp; Software Engineering</span>
           </p>
           <p className="mt-1 text-xs text-muted">
-            Building intelligent, performant systems.
+            Designing resilient machine learning architectures &amp; intelligent systems.
           </p>
         </div>
 
         {/* Social and direct links with subtle hover animation */}
         <div className="flex flex-wrap items-center gap-6 font-mono text-xs text-muted">
           <motion.a
-            whileHover={{ y: -1.5, color: "#f5f5f5" }}
+            whileHover={{ y: -1.5, color: "#f3f0e8" }}
             href={profile.github}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 transition-colors"
           >
-            <Github size={14} />
+            <Github size={15} />
             <span>GitHub</span>
           </motion.a>
 
           <motion.a
-            whileHover={{ y: -1.5, color: "#f5f5f5" }}
+            whileHover={{ y: -1.5, color: "#f3f0e8" }}
             href={profile.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 transition-colors"
           >
-            <Linkedin size={14} />
+            <Linkedin size={15} />
             <span>LinkedIn</span>
           </motion.a>
 
           <motion.a
-            whileHover={{ y: -1.5, color: "#f5f5f5" }}
+            whileHover={{ y: -1.5, color: "#f3f0e8" }}
             href={`mailto:${profile.email}`}
             className="flex items-center gap-1.5 transition-colors"
           >
-            <Mail size={14} />
+            <Mail size={15} />
             <span>Email</span>
           </motion.a>
         </div>

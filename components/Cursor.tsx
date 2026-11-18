@@ -9,16 +9,13 @@ export default function Cursor() {
   const [cursorType, setCursorType] = useState<"default" | "pointer" | "card">("default");
   const [visible, setVisible] = useState(false);
 
-  // Raw mouse coordinates
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  // Smooth spring physics for trailing outer ring
   const ringX = useSpring(mouseX, { stiffness: 320, damping: 28, mass: 0.5 });
   const ringY = useSpring(mouseY, { stiffness: 320, damping: 28, mass: 0.5 });
 
   useEffect(() => {
-    // Only run on desktop with hover capability & reduced-motion not active
     if (typeof window === "undefined") return;
     if (window.matchMedia("(hover: none)").matches || prefersReducedMotion()) {
       return;
@@ -76,10 +73,10 @@ export default function Cursor() {
 
   return (
     <>
-      {/* Small precision center dot */}
+      {/* Precision olive/ivory center dot */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none fixed top-0 left-0 z-50 h-1.5 w-1.5 rounded-full bg-accent"
+        className="pointer-events-none fixed top-0 left-0 z-50 h-1.5 w-1.5 rounded-full bg-olive"
         style={{
           x: mouseX,
           y: mouseY,
@@ -87,16 +84,16 @@ export default function Cursor() {
           translateY: "-50%",
         }}
         animate={{
-          scale: cursorType === "pointer" ? 0 : cursorType === "card" ? 1.5 : 1,
+          scale: cursorType === "pointer" ? 0 : cursorType === "card" ? 1.4 : 1,
           opacity: cursorType === "pointer" ? 0 : 1,
         }}
         transition={{ duration: 0.15 }}
       />
 
-      {/* Smooth outer ring */}
+      {/* Trailing architectural halo */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none fixed top-0 left-0 z-50 rounded-full border border-accent/60"
+        className="pointer-events-none fixed top-0 left-0 z-50 rounded-full border border-olive/50"
         style={{
           x: ringX,
           y: ringY,
@@ -104,20 +101,20 @@ export default function Cursor() {
           translateY: "-50%",
         }}
         animate={{
-          width: cursorType === "pointer" ? 36 : cursorType === "card" ? 54 : 26,
-          height: cursorType === "pointer" ? 36 : cursorType === "card" ? 54 : 26,
+          width: cursorType === "pointer" ? 36 : cursorType === "card" ? 52 : 26,
+          height: cursorType === "pointer" ? 36 : cursorType === "card" ? 52 : 26,
           backgroundColor:
             cursorType === "pointer"
-              ? "rgba(197, 248, 42, 0.12)"
+              ? "rgba(157, 179, 138, 0.12)"
               : cursorType === "card"
-              ? "rgba(197, 248, 42, 0.06)"
-              : "rgba(197, 248, 42, 0.0)",
+              ? "rgba(157, 179, 138, 0.06)"
+              : "transparent",
           borderColor:
             cursorType === "pointer"
-              ? "rgba(197, 248, 42, 0.85)"
+              ? "rgba(157, 179, 138, 0.85)"
               : cursorType === "card"
-              ? "rgba(197, 248, 42, 0.45)"
-              : "rgba(255, 255, 255, 0.22)",
+              ? "rgba(157, 179, 138, 0.45)"
+              : "rgba(243, 240, 232, 0.2)",
         }}
         transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
       />

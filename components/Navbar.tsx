@@ -60,8 +60,8 @@ export default function Navbar() {
       >
         <div
           className={cn(
-            "pointer-events-none absolute inset-0 -z-10 border-b border-line/60 bg-void/80 backdrop-blur-md transition-all duration-300",
-            scrolled ? "opacity-100 shadow-[0_4px_24px_rgba(0,0,0,0.5)]" : "opacity-0"
+            "pointer-events-none absolute inset-0 -z-10 border-b border-line/60 bg-void/85 backdrop-blur-md transition-all duration-300",
+            scrolled ? "opacity-100 shadow-[0_4px_24px_rgba(0,0,0,0.6)]" : "opacity-0"
           )}
         />
 
@@ -72,22 +72,22 @@ export default function Navbar() {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
-          className="group flex items-center gap-2.5 font-display text-sm font-semibold tracking-wide text-ink"
+          className="group flex items-center gap-2.5 font-display text-sm font-semibold tracking-wide text-ivory"
         >
           <motion.span
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="flex h-7 w-7 items-center justify-center rounded-md border border-line bg-surface font-mono text-xs text-accent transition-colors group-hover:border-accent/40"
+            className="flex h-7 w-7 items-center justify-center rounded-lg border border-line-strong bg-surface font-mono text-xs text-olive transition-colors group-hover:border-olive/50"
           >
             JM
           </motion.span>
-          <span className="hidden sm:inline font-medium text-ink/90 transition-colors group-hover:text-ink">
+          <span className="hidden sm:inline font-medium text-ivory/90 transition-colors group-hover:text-ivory">
             {profile.name}
           </span>
         </a>
 
         {/* Desktop navigation bar */}
-        <nav className="hidden items-center gap-1 rounded-full border border-line/80 bg-surface/75 px-3 py-1.5 backdrop-blur-md md:flex">
+        <nav className="hidden items-center gap-1 rounded-full border border-line/80 bg-surface/80 px-3.5 py-1.5 backdrop-blur-md md:flex">
           {navSections.map((s) => {
             const isActive = active === s.id;
             return (
@@ -96,7 +96,7 @@ export default function Navbar() {
                 onClick={() => goTo(s.id)}
                 className={cn(
                   "relative rounded-full px-3.5 py-1.5 font-mono text-xs uppercase tracking-wider transition-colors duration-200",
-                  isActive ? "text-ink" : "text-muted hover:text-ink"
+                  isActive ? "text-ivory" : "text-muted hover:text-ivory"
                 )}
               >
                 {isActive && (
@@ -110,7 +110,7 @@ export default function Navbar() {
                   {isActive && (
                     <motion.span
                       layoutId="nav-dot"
-                      className="h-1 w-1 rounded-full bg-accent"
+                      className="h-1 w-1 rounded-full bg-olive"
                       transition={{ type: "spring", stiffness: 380, damping: 32 }}
                     />
                   )}
@@ -131,7 +131,7 @@ export default function Navbar() {
               aria-label="GitHub Profile"
               whileHover={{ y: -1.5 }}
               whileTap={{ scale: 0.98 }}
-              className="flex items-center gap-2 rounded-full border border-line bg-surface/70 px-3.5 py-1.5 font-mono text-xs text-muted backdrop-blur-sm transition-colors hover:border-accent/40 hover:text-ink"
+              className="flex items-center gap-2 rounded-full border border-line bg-surface/75 px-3.5 py-1.5 font-mono text-xs text-muted backdrop-blur-sm transition-colors hover:border-olive/40 hover:text-ivory"
             >
               <Github size={14} />
               <span>GitHub</span>
@@ -143,7 +143,7 @@ export default function Navbar() {
         {/* Mobile menu toggle */}
         <button
           onClick={() => setMenuOpen((v) => !v)}
-          className="flex h-9 w-9 items-center justify-center rounded-md border border-line bg-surface text-ink md:hidden"
+          className="flex h-9 w-9 items-center justify-center rounded-lg border border-line bg-surface text-ivory md:hidden"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
         >
@@ -169,10 +169,10 @@ export default function Navbar() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.04, duration: 0.3 }}
                   onClick={() => goTo(s.id)}
-                  className="flex items-center justify-between py-2 text-left font-display text-lg text-ink/90 transition-colors hover:text-accent"
+                  className="flex items-center justify-between py-2 text-left font-display text-lg text-ivory/90 transition-colors hover:text-olive"
                 >
                   <span className="flex items-center gap-2">
-                    {active === s.id && <span className="h-1.5 w-1.5 rounded-full bg-accent" />}
+                    {active === s.id && <span className="h-1.5 w-1.5 rounded-full bg-olive" />}
                     {s.label}
                   </span>
                   <span className="font-mono text-xs text-muted">0{idx + 1}</span>
@@ -184,12 +184,12 @@ export default function Navbar() {
                   href={profile.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between rounded-lg border border-line bg-surface p-3 font-mono text-xs text-ink transition-colors hover:border-accent/40"
+                  className="flex items-center justify-between rounded-xl border border-line bg-surface p-3 font-mono text-xs text-ivory transition-colors hover:border-olive/40"
                 >
                   <span className="flex items-center gap-2">
                     <Github size={16} /> GitHub Profile
                   </span>
-                  <ArrowUpRight size={14} className="text-accent" />
+                  <ArrowUpRight size={14} className="text-olive" />
                 </a>
               </div>
             </nav>

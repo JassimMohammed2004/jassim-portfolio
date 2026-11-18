@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, ArrowUpRight, Github, Mail, ShieldCheck, GraduationCap } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Github, Mail, ShieldCheck, Compass } from "lucide-react";
 import Scene from "./Scene";
 import Magnetic from "./ui/Magnetic";
 import AvatarArt from "./ui/AvatarArt";
@@ -25,7 +25,7 @@ export default function Hero() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 22 },
     visible: {
       opacity: 1,
       y: 0,
@@ -39,14 +39,14 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[96svh] flex-col justify-between overflow-hidden px-6 pt-32 pb-12 md:px-12 md:pt-40 md:pb-16"
+      className="relative flex min-h-[96svh] flex-col justify-between overflow-hidden px-6 pt-32 pb-12 md:px-12 md:pt-36 md:pb-16"
     >
       <Scene />
 
       {/* Main Asymmetric Hero Stage */}
       <div className="relative z-10 mx-auto w-full max-w-6xl">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
-          {/* Left Column: Editorial Typography & CTAs */}
+        <div className="grid items-center gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
+          {/* Left Column: Expressive Editorial Typography & CTAs */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -55,39 +55,39 @@ export default function Hero() {
           >
             {/* Status & Degree Verified Tag */}
             <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-3">
-              <div className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-surface/80 px-3.5 py-1.5 backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-surface/85 px-4 py-1.5 backdrop-blur-md">
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-olive opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-olive" />
                 </span>
-                <span className="font-mono text-xs text-ink/90">
-                  Available for AI/ML Engineering
+                <span className="font-mono text-xs text-ivory">
+                  Open for AI/ML &amp; Software Roles
                 </span>
               </div>
 
-              <div className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface/50 px-3 py-1 font-mono text-xs text-muted backdrop-blur-sm">
-                <GraduationCap size={13} className="text-accent" />
-                <span>B.Tech AI &amp; DS (Graduated)</span>
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface/50 px-3.5 py-1 font-mono text-xs text-muted backdrop-blur-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                <span>B.Tech AI &amp; DS — Graduated</span>
               </div>
             </motion.div>
 
-            {/* Name with oversized editorial typography */}
+            {/* Oversized Expressive Typography Name */}
             <motion.div variants={itemVariants} className="space-y-2">
               <div className="flex items-center gap-3">
                 <motion.span
                   initial={{ width: 0 }}
-                  animate={{ width: 40 }}
-                  transition={{ duration: 0.8, delay: 0.3, ease: EASE.standard }}
-                  className="h-[2px] bg-accent"
+                  animate={{ width: 44 }}
+                  transition={{ duration: 0.8, delay: 0.25, ease: EASE.standard }}
+                  className="h-[2px] bg-olive"
                 />
-                <p className="font-mono text-xs font-semibold uppercase tracking-widest2 text-accent">
-                  {profile.role}
+                <p className="font-mono text-xs font-semibold uppercase tracking-widest2 text-olive">
+                  AI &amp; Machine Learning Engineer
                 </p>
               </div>
 
-              <h1 className="font-display text-5xl font-bold tracking-tight text-ink sm:text-6xl md:text-7xl lg:text-8xl">
+              <h1 className="font-display text-5xl font-extrabold tracking-tightest text-ivory sm:text-6xl md:text-7xl lg:text-8xl leading-[0.92]">
                 Jassim <br />
-                <span className="text-ink/90">Mohammed</span>
+                <span className="text-ivory-muted font-light">Mohammed</span>
               </h1>
             </motion.div>
 
@@ -99,19 +99,19 @@ export default function Hero() {
               {profile.tagline}
             </motion.p>
 
-            {/* Action CTAs */}
+            {/* Action CTAs with subtle magnetic physics */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap items-center gap-4 pt-2"
+              className="flex flex-wrap items-center gap-4 pt-3"
             >
               <Magnetic strength={0.25}>
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => scrollTo("projects")}
-                  className="group flex items-center gap-2.5 rounded-xl bg-accent px-6 py-3.5 font-mono text-xs font-semibold uppercase tracking-wider text-void transition-all hover:bg-accent-hover shadow-[0_4px_24px_rgba(197,248,42,0.22)]"
+                  className="group flex items-center gap-2.5 rounded-xl bg-ivory px-6 py-3.5 font-mono text-xs font-semibold uppercase tracking-wider text-void transition-all hover:bg-accent shadow-[0_4px_24px_rgba(243,240,232,0.15)]"
                 >
-                  <span>View Projects</span>
+                  <span>Explore Systems</span>
                   <ArrowDown size={14} className="transition-transform group-hover:translate-y-0.5" />
                 </motion.button>
               </Magnetic>
@@ -121,10 +121,10 @@ export default function Hero() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => scrollTo("contact")}
-                  className="group flex items-center gap-2 rounded-xl border border-line-strong bg-surface px-6 py-3.5 font-mono text-xs font-semibold uppercase tracking-wider text-ink transition-all hover:border-accent hover:bg-surface-elevated"
+                  className="group flex items-center gap-2 rounded-xl border border-line-strong bg-surface px-6 py-3.5 font-mono text-xs font-semibold uppercase tracking-wider text-ivory transition-all hover:border-olive hover:bg-surface-elevated"
                 >
-                  <Mail size={14} className="text-accent" />
-                  <span>Contact Me</span>
+                  <Mail size={14} className="text-olive" />
+                  <span>Get in Touch</span>
                 </motion.button>
               </Magnetic>
 
@@ -135,7 +135,7 @@ export default function Hero() {
                   href={profile.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 rounded-xl border border-line bg-surface/60 px-5 py-3.5 font-mono text-xs font-medium uppercase tracking-wider text-muted transition-all hover:border-line-strong hover:text-ink"
+                  className="flex items-center gap-2 rounded-xl border border-line bg-surface/60 px-5 py-3.5 font-mono text-xs font-medium uppercase tracking-wider text-muted transition-all hover:border-line-strong hover:text-ivory"
                 >
                   <Github size={15} />
                   <span>GitHub</span>
@@ -145,11 +145,11 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right Column: Distinctive Avatar & Identity Art */}
+          {/* Right Column: Distinctive Avatar & Identity Sculpture */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.94, y: 24 }}
+            initial={{ opacity: 0, scale: 0.92, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.3, ease: EASE.standard }}
+            transition={{ duration: 0.9, delay: 0.25, ease: EASE.standard }}
             className="flex justify-center lg:justify-end"
           >
             <AvatarArt />
@@ -166,15 +166,15 @@ export default function Hero() {
       >
         <div className="flex flex-wrap items-center justify-between gap-4 font-mono text-[11px] uppercase tracking-wider text-faint">
           <div className="flex items-center gap-2">
-            <ShieldCheck size={13} className="text-accent" />
-            <span>Kottayam, Kerala, India</span>
+            <Compass size={13} className="text-olive" />
+            <span>Kottayam, Kerala, India — Engineering Intelligence</span>
           </div>
           <button
             onClick={() => scrollTo("about")}
-            className="group flex items-center gap-2 text-muted hover:text-ink transition-colors cursor-pointer"
+            className="group flex items-center gap-2 text-muted hover:text-ivory transition-colors cursor-pointer"
           >
-            <span>Scroll to explore portfolio</span>
-            <ArrowDown size={12} className="animate-bounce text-accent" />
+            <span>Scroll to discover</span>
+            <ArrowDown size={12} className="animate-bounce text-olive" />
           </button>
         </div>
       </motion.div>
