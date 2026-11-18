@@ -6,6 +6,7 @@ import { Menu, X, Github, ArrowUpRight } from "lucide-react";
 import { profile, navSections } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 import { EASE } from "@/lib/constants";
+import Magnetic from "./ui/Magnetic";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -53,7 +54,7 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: EASE.standard }}
         className={cn(
-          "fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-6 transition-all duration-300 md:px-12",
+          "fixed left-0 right-0 top-0 z-40 flex items-center justify-between px-6 transition-all duration-300 md:px-12",
           scrolled ? "py-3.5" : "py-6"
         )}
       >
@@ -120,21 +121,23 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* GitHub & Quick Action buttons */}
+        {/* GitHub & Quick Action buttons with subtle magnetic pull */}
         <div className="hidden items-center gap-3 md:flex">
-          <motion.a
-            href={profile.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub Profile"
-            whileHover={{ y: -1.5 }}
-            whileTap={{ scale: 0.98 }}
-            className="flex items-center gap-2 rounded-full border border-line bg-surface/70 px-3.5 py-1.5 font-mono text-xs text-muted backdrop-blur-sm transition-colors hover:border-accent/40 hover:text-ink"
-          >
-            <Github size={14} />
-            <span>GitHub</span>
-            <ArrowUpRight size={12} className="opacity-60 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </motion.a>
+          <Magnetic strength={0.25}>
+            <motion.a
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Profile"
+              whileHover={{ y: -1.5 }}
+              whileTap={{ scale: 0.98 }}
+              className="flex items-center gap-2 rounded-full border border-line bg-surface/70 px-3.5 py-1.5 font-mono text-xs text-muted backdrop-blur-sm transition-colors hover:border-accent/40 hover:text-ink"
+            >
+              <Github size={14} />
+              <span>GitHub</span>
+              <ArrowUpRight size={12} className="opacity-60 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </motion.a>
+          </Magnetic>
         </div>
 
         {/* Mobile menu toggle */}

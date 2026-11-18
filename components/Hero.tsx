@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Github, Mail } from "lucide-react";
 import Scene from "./Scene";
+import Magnetic from "./ui/Magnetic";
 import { profile } from "@/data/portfolio";
 import { EASE } from "@/lib/constants";
 
@@ -93,43 +94,49 @@ export default function Hero() {
           {profile.tagline}
         </motion.p>
 
-        {/* Action CTAs with subtle hover physics */}
+        {/* Action CTAs with magnetic interaction and subtle hover physics */}
         <motion.div
           variants={itemVariants}
           className="mt-10 flex flex-wrap items-center gap-4"
         >
-          <motion.button
-            whileHover={{ scale: 1.02, y: -1 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => scrollTo("projects")}
-            className="group flex items-center gap-2 rounded-lg bg-accent px-5 py-3 font-mono text-xs font-medium uppercase tracking-wider text-void transition-all hover:bg-accent-hover shadow-[0_2px_12px_rgba(197,248,42,0.18)] hover:shadow-[0_4px_20px_rgba(197,248,42,0.28)]"
-          >
-            <span>View Projects</span>
-            <ArrowDown size={14} className="transition-transform group-hover:translate-y-0.5" />
-          </motion.button>
+          <Magnetic strength={0.25}>
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => scrollTo("projects")}
+              className="group flex items-center gap-2 rounded-lg bg-accent px-5 py-3 font-mono text-xs font-medium uppercase tracking-wider text-void transition-all hover:bg-accent-hover shadow-[0_2px_12px_rgba(197,248,42,0.18)] hover:shadow-[0_4px_20px_rgba(197,248,42,0.28)]"
+            >
+              <span>View Projects</span>
+              <ArrowDown size={14} className="transition-transform group-hover:translate-y-0.5" />
+            </motion.button>
+          </Magnetic>
 
-          <motion.a
-            whileHover={{ scale: 1.02, y: -1 }}
-            whileTap={{ scale: 0.98 }}
-            href={profile.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-lg border border-line bg-surface px-5 py-3 font-mono text-xs font-medium uppercase tracking-wider text-ink transition-all hover:border-accent/40 hover:bg-surface-elevated"
-          >
-            <Github size={15} />
-            <span>GitHub</span>
-            <ArrowUpRight size={13} className="text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </motion.a>
+          <Magnetic strength={0.25}>
+            <motion.a
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-lg border border-line bg-surface px-5 py-3 font-mono text-xs font-medium uppercase tracking-wider text-ink transition-all hover:border-accent/40 hover:bg-surface-elevated"
+            >
+              <Github size={15} />
+              <span>GitHub</span>
+              <ArrowUpRight size={13} className="text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </motion.a>
+          </Magnetic>
 
-          <motion.button
-            whileHover={{ scale: 1.02, y: -1 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => scrollTo("contact")}
-            className="flex items-center gap-2 rounded-lg border border-line bg-surface px-5 py-3 font-mono text-xs font-medium uppercase tracking-wider text-muted transition-all hover:border-line-strong hover:text-ink hover:bg-surface-elevated"
-          >
-            <Mail size={15} />
-            <span>Contact</span>
-          </motion.button>
+          <Magnetic strength={0.25}>
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => scrollTo("contact")}
+              className="flex items-center gap-2 rounded-lg border border-line bg-surface px-5 py-3 font-mono text-xs font-medium uppercase tracking-wider text-muted transition-all hover:border-line-strong hover:text-ink hover:bg-surface-elevated"
+            >
+              <Mail size={15} />
+              <span>Contact</span>
+            </motion.button>
+          </Magnetic>
         </motion.div>
       </motion.div>
 

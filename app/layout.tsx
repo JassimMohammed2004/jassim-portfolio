@@ -3,6 +3,7 @@ import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import Cursor from "@/components/Cursor";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 import { profile } from "@/data/portfolio";
 
 const display = Space_Grotesk({
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <body className="bg-void text-ink font-body">
         <SmoothScrollProvider>
+          <ScrollProgress />
           <div className="grain-overlay" aria-hidden="true" />
           <Cursor />
           {children}

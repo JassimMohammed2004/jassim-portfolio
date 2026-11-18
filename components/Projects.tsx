@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useState, MouseEvent } from "react";
+import { useRef, MouseEvent } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Github, ShieldAlert, Mic, Users } from "lucide-react";
 import Section from "./ui/Section";
+import Magnetic from "./ui/Magnetic";
 import { projects, ProjectItem } from "@/data/portfolio";
 import { cardItem, staggerContainer } from "@/lib/animations";
 
@@ -53,7 +54,8 @@ function ProjectCard({ project, index }: { project: ProjectItem; index: number }
     <motion.div
       variants={cardItem}
       style={{ perspective: 800 }}
-      className="h-full"
+      data-cursor="card"
+      className="project-card h-full"
     >
       <motion.div
         ref={cardRef}
@@ -127,20 +129,22 @@ function ProjectCard({ project, index }: { project: ProjectItem; index: number }
           </div>
 
           <div className="flex items-center justify-between text-xs font-mono">
-            {/* GitHub repo button */}
+            {/* GitHub repo button with magnetic pull */}
             {project.githubUrl ? (
-              <motion.a
-                whileHover={{ scale: 1.03, y: -1 }}
-                whileTap={{ scale: 0.97 }}
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-md border border-line bg-surface px-3 py-1.5 text-ink transition-colors hover:border-accent hover:text-accent"
-              >
-                <Github size={13} />
-                <span>Repository</span>
-                <ArrowUpRight size={12} />
-              </motion.a>
+              <Magnetic strength={0.22}>
+                <motion.a
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-md border border-line bg-surface px-3 py-1.5 text-ink transition-colors hover:border-accent hover:text-accent"
+                >
+                  <Github size={13} />
+                  <span>Repository</span>
+                  <ArrowUpRight size={12} />
+                </motion.a>
+              </Magnetic>
             ) : (
               <span className="inline-flex items-center gap-1.5 text-faint">
                 <Github size={13} />
@@ -148,19 +152,21 @@ function ProjectCard({ project, index }: { project: ProjectItem; index: number }
               </span>
             )}
 
-            {/* Live demo button */}
+            {/* Live demo button with magnetic pull */}
             {project.liveUrl ? (
-              <motion.a
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-accent transition-colors hover:text-accent-hover"
-              >
-                <span>Live Demo</span>
-                <ArrowUpRight size={13} />
-              </motion.a>
+              <Magnetic strength={0.22}>
+                <motion.a
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-accent transition-colors hover:text-accent-hover"
+                >
+                  <span>Live Demo</span>
+                  <ArrowUpRight size={13} />
+                </motion.a>
+              </Magnetic>
             ) : (
               <span className="text-[11px] text-faint uppercase tracking-wider">
                 Active System
