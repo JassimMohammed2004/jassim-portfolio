@@ -1,133 +1,135 @@
 "use client";
 
-import { useState, useRef, MouseEvent } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { X, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Github, ShieldAlert, Mic, Users } from "lucide-react";
 import Section from "./ui/Section";
 import Reveal from "./ui/Reveal";
-import { projects } from "@/data/portfolio";
+import { projects, ProjectItem } from "@/data/portfolio";
 
-function Pipeline({ steps }: { steps: string[] }) {
+const projectIcons: Record<string, React.ElementType> = {
+  "nids-ml": ShieldAlert,
+  "alexa-voice-assistant": Mic,
+  "collabify-ai": Users,
+};
+
+function ProjectCard({ project, index }: { project: ProjectItem; index: number }) {
+  const Icon = projectIcons[project.id] || ShieldAlert;
+
   return (
-    <div className="mt-6 flex flex-wrap items-center gap-2 font-mono text-[10px] uppercase tracking-widest2 text-muted">
-      {steps.map((step, i) => (
-        <span key={step} className="flex items-center gap-2">
-          <span className="rounded border border-line px-2.5 py-1.5 text-ink">{step}</span>
-          {i < steps.length - 1 && (
-            <motion.span
-              className="text-signal"
-              animate={{ opacity: [0.3, 1, 0.3] }}
-              transition={{ duration: 1.8, repeat: Infinity, delay: i * 0.25 }}
-            >
-              →
-            </motion.span>
+    <Reveal delay={index * 0.1}>
+      <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-xl border border-line bg-surface p-7 transition-all duration-300 hover:border-line-strong hover:bg-surface-elevated md:p-8">
+        <div>
+          {/* Top category and index badge */}
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-line bg-surface-elevated text-accent">
+                <Icon size={16} strokeWidth={1.8} />
+              </div>
+              <span className="font-mono text-[11px] uppercase tracking-wider text-muted">
+                {project.category}
+              </span>
+            </div>
+            <span className="font-mono text-xs text-faint">0{index + 1}</span>
+          </div>
+
+          {/* Project Title */}
+          <h3 className="mt-5 font-display text-xl font-semibold leading-snug text-ink transition-colors group-hover:text-accent md:text-2xl">
+            {project.title}
+          </h3>
+
+          {/* Clear Description */}
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            {project.description}
+          </p>
+
+          {/* Technical Highlights */}
+          {project.highlights && project.highlights.length > 0 && (
+            <div className="mt-5 space-y-1.5 border-t border-line/60 pt-4">
+              <span className="block font-mono text-[10px] uppercase tracking-wider text-faint">
+                Key Architectural Highlights
+              </span>
+              <ul className="space-y-1 text-xs text-muted/90">
+                {project.highlights.map((h, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-accent/80" />
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
-        </span>
-      ))}
-    </div>
-  );
-}
-
-function ProjectCard({ project, onOpen }: { project: (typeof projects)[number]; onOpen: () => void }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
-
-  function handleMove(e: MouseEvent<HTMLDivElement>) {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-    const relX = (e.clientX - rect.left - rect.width / 2) / rect.width;
-    const relY = (e.clientY - rect.top - rect.height / 2) / rect.height;
-    setOffset({ x: relX * 10, y: relY * 10 });
-  }
-
-  return (
-    <Reveal>
-      <motion.div
-        ref={ref}
-        onMouseMove={handleMove}
-        onMouseLeave={() => setOffset({ x: 0, y: 0 })}
-        animate={{ x: offset.x, y: offset.y }}
-        transition={{ type: "spring", stiffness: 150, damping: 15 }}
-        onClick={onOpen}
-        data-cursor="OPEN"
-        className="group cursor-pointer rounded-xl border border-line bg-panel/50 p-7 transition-colors hover:border-line-strong md:p-10"
-      >
-        <div className="flex items-start justify-between gap-4">
-          <span className="font-mono text-xs text-faint">{project.index}</span>
-          <span className="flex items-center gap-2 rounded-full border border-signal-dim bg-signal-soft px-3 py-1 font-mono text-[10px] uppercase tracking-widest2 text-signal">
-            <span className="h-1.5 w-1.5 rounded-full bg-signal" />
-            {project.statusLabel}
-          </span>
         </div>
 
-        <h3 className="mt-6 max-w-lg font-display text-2xl font-medium leading-snug text-ink transition-colors group-hover:text-signal md:text-3xl">
-          {project.title}
-        </h3>
+        {/* Technology Stack & Action links */}
+        <div className="mt-8 border-t border-line pt-6">
+          <div className="flex flex-wrap gap-1.5 mb-6">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded border border-line bg-surface px-2.5 py-1 font-mono text-[11px] text-muted transition-colors hover:text-ink"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
 
-        {project.description && (
-          <p className="mt-3 max-w-md text-sm leading-relaxed text-muted">{project.description}</p>
-        )}
+          <div className="flex items-center justify-between text-xs font-mono">
+            {/* GitHub repo button */}
+            {project.githubUrl ? (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-md border border-line bg-surface px-3 py-1.5 text-ink transition-colors hover:border-accent hover:text-accent"
+              >
+                <Github size={13} />
+                <span>Repository</span>
+                <ArrowUpRight size={12} />
+              </a>
+            ) : (
+              <span className="inline-flex items-center gap-1.5 text-faint">
+                <Github size={13} />
+                <span>Repo in staging</span>
+              </span>
+            )}
 
-        {project.pipeline && <Pipeline steps={project.pipeline} />}
-
-        <div className="mt-8 flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest2 text-muted group-hover:text-ink">
-          View details <ArrowUpRight size={13} />
+            {/* Live demo button */}
+            {project.liveUrl ? (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-accent transition-colors hover:text-accent-hover"
+              >
+                <span>Live Demo</span>
+                <ArrowUpRight size={13} />
+              </a>
+            ) : (
+              <span className="text-[11px] text-faint uppercase tracking-wider">
+                Active System
+              </span>
+            )}
+          </div>
         </div>
-      </motion.div>
+      </div>
     </Reveal>
   );
 }
 
 export default function Projects() {
-  const [openId, setOpenId] = useState<string | null>(null);
-  const active = projects.find((p) => p.id === openId) || null;
-
   return (
-    <Section id="projects" index="03" label="Systems" title="Selected Systems">
-      <div className="grid gap-6 md:grid-cols-2">
-        {projects.map((p) => (
-          <ProjectCard key={p.id} project={p} onOpen={() => setOpenId(p.id)} />
+    <Section
+      id="projects"
+      index="03"
+      label="Featured Systems"
+      title="Engineering Project Showcase"
+      description="Selected systems highlighting practical machine learning, voice AI, and intelligent collaboration architecture."
+    >
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {projects.map((p, idx) => (
+          <ProjectCard key={p.id} project={p} index={idx} />
         ))}
       </div>
-
-      <AnimatePresence>
-        {active && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[80] flex items-center justify-center bg-void/85 p-4 backdrop-blur-sm"
-            onClick={() => setOpenId(null)}
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 24, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 12, scale: 0.98 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-xl rounded-xl border border-line-strong bg-surface p-8 md:p-10"
-            >
-              <button
-                onClick={() => setOpenId(null)}
-                aria-label="Close project details"
-                className="absolute right-6 top-6 text-muted hover:text-ink"
-              >
-                <X size={18} />
-              </button>
-              <span className="font-mono text-xs text-faint">{active.index}</span>
-              <h3 className="mt-3 font-display text-2xl text-ink md:text-3xl">{active.title}</h3>
-              <span className="mt-4 inline-flex items-center gap-2 rounded-full border border-signal-dim bg-signal-soft px-3 py-1 font-mono text-[10px] uppercase tracking-widest2 text-signal">
-                <span className="h-1.5 w-1.5 rounded-full bg-signal" />
-                {active.statusLabel}
-              </span>
-              {active.description && (
-                <p className="mt-5 text-sm leading-relaxed text-muted">{active.description}</p>
-              )}
-              {active.pipeline && <Pipeline steps={active.pipeline} />}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </Section>
   );
 }

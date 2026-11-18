@@ -1,84 +1,93 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { useInView } from "framer-motion";
 import Section from "./ui/Section";
 import Reveal from "./ui/Reveal";
-import { profile, traits } from "@/data/portfolio";
+import { profile } from "@/data/portfolio";
+import { Cpu, Database, Network, ShieldCheck } from "lucide-react";
 
-const ROWS = [
-  { key: "NAME", value: profile.name },
-  { key: "FIELD", value: "Artificial Intelligence & Data Science" },
-  { key: "LOCATION", value: profile.location },
-  { key: "FOCUS", value: "AI / Data / Software Engineering" },
+const focusAreas = [
+  {
+    icon: Cpu,
+    title: "Machine Learning & AI",
+    desc: "Developing pattern recognition models, predictive algorithms, and integrating LLMs into robust software applications.",
+  },
+  {
+    icon: Database,
+    title: "Data Science & Pipelines",
+    desc: "End-to-end data processing, feature engineering, exploratory analysis, and structured dataset curation using Python and SQL.",
+  },
+  {
+    icon: Network,
+    title: "Software Engineering",
+    desc: "Architecting modular, maintainable codebases with performant REST APIs using FastAPI, Flask, and modern JavaScript.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Practical Security & Integrity",
+    desc: "Focusing on secure data handling, network intrusion detection methodologies, and disciplined software development practices.",
+  },
 ];
 
-function TypedLine({ text, start, speed = 18 }: { text: string; start: boolean; speed?: number }) {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    if (!start) return;
-    if (count >= text.length) return;
-    const id = setTimeout(() => setCount((c) => c + 1), speed);
-    return () => clearTimeout(id);
-  }, [start, count, text, speed]);
-  return <>{text.slice(0, count)}</>;
-}
-
 export default function About() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-20% 0px" });
-
   return (
-    <Section id="about" index="01" label="Profile" title="Initialize Profile">
-      <div ref={ref} className="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
-        <Reveal>
-          <div className="rounded-lg border border-line bg-panel/60 p-6 font-mono text-sm md:p-8">
-            <div className="mb-5 flex items-center gap-2 border-b border-line pb-4 text-faint">
-              <span className="h-2 w-2 rounded-full bg-signal-dim" />
-              <span className="h-2 w-2 rounded-full bg-line-strong" />
-              <span className="h-2 w-2 rounded-full bg-line-strong" />
-              <span className="ml-2 text-xs">profile.sh</span>
-            </div>
+    <Section
+      id="about"
+      index="01"
+      label="Profile & Philosophy"
+      title="Engineering Practical Intelligence"
+      description="A disciplined engineering approach blending mathematical data models with reliable, scalable software."
+    >
+      <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+        {/* Narrative bio */}
+        <Reveal className="space-y-6">
+          <div className="rounded-xl border border-line bg-surface p-7 md:p-9 space-y-5">
+            <h3 className="font-display text-xl font-medium text-ink">
+              About Jassim Mohammed
+            </h3>
+            {profile.bio.map((paragraph, idx) => (
+              <p key={idx} className="text-base leading-relaxed text-muted">
+                {paragraph}
+              </p>
+            ))}
 
-            <p className="mb-4 text-muted">
-              <span className="text-signal">$</span> <TypedLine text="initialize_profile()" start={inView} />
-            </p>
-
-            <p className="mb-6 flex items-center gap-2 text-ok">
-              <span className="h-1.5 w-1.5 rounded-full bg-ok" />
-              SYSTEM ONLINE
-            </p>
-
-            <dl className="space-y-3">
-              {ROWS.map((row, i) => (
-                <div key={row.key} className="flex flex-col gap-1 sm:flex-row sm:gap-4">
-                  <dt className="w-28 shrink-0 text-faint">{row.key}</dt>
-                  <dd className="text-ink">
-                    <TypedLine text={row.value} start={inView} speed={10} />
-                    {i === ROWS.length - 1 && (
-                      <span className="ml-0.5 inline-block h-4 w-[2px] animate-blink bg-signal align-middle" />
-                    )}
-                  </dd>
+            <div className="pt-4 border-t border-line">
+              <div className="grid grid-cols-2 gap-4 text-xs font-mono">
+                <div>
+                  <span className="text-faint block uppercase">Degree Target</span>
+                  <span className="text-ink font-medium mt-1 block">B.Tech AI &amp; DS (2026)</span>
                 </div>
-              ))}
-            </dl>
+                <div>
+                  <span className="text-faint block uppercase">Current Location</span>
+                  <span className="text-ink font-medium mt-1 block">{profile.location}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </Reveal>
 
-        <Reveal delay={0.1} className="flex flex-col justify-center">
-          <p className="mb-6 text-balance text-lg leading-relaxed text-muted">
-            An AI &amp; Data Science engineering student focused on building systems at the
-            intersection of intelligent software, data and secure computation.
-          </p>
-          <ul className="space-y-3">
-            {traits.map((trait) => (
-              <li key={trait} className="flex items-start gap-3 border-t border-line pt-3 text-sm text-ink">
-                <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-signal" />
-                {trait}
-              </li>
-            ))}
-          </ul>
-        </Reveal>
+        {/* Pillars / Technical Foundations */}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+          {focusAreas.map((area, idx) => {
+            const Icon = area.icon;
+            return (
+              <Reveal key={area.title} delay={idx * 0.08}>
+                <div className="rounded-xl border border-line bg-surface/50 p-6 transition-all hover:border-line-strong hover:bg-surface-elevated">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-line bg-surface text-accent">
+                      <Icon size={18} strokeWidth={1.8} />
+                    </div>
+                    <h4 className="font-display text-base font-medium text-ink">
+                      {area.title}
+                    </h4>
+                  </div>
+                  <p className="mt-3 text-xs leading-relaxed text-muted">
+                    {area.desc}
+                  </p>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
       </div>
     </Section>
   );

@@ -1,117 +1,158 @@
 "use client";
 
-import { FormEvent, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Mail, MapPin, Phone, Check } from "lucide-react";
+import { useState } from "react";
+import { Mail, MapPin, Phone, Github, Linkedin, Copy, Check, ArrowUpRight } from "lucide-react";
 import Section from "./ui/Section";
 import Reveal from "./ui/Reveal";
 import { profile } from "@/data/portfolio";
 
-const inputClasses =
-  "w-full border-b border-line bg-transparent py-3 font-body text-ink placeholder:text-faint focus:border-signal focus:outline-none transition-colors";
-
 export default function Contact() {
-  const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const [copied, setCopied] = useState(false);
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    // NOTE: no backend is wired up yet. This form is structured so a real
-    // endpoint (e.g. Formspree, Resend, or a custom API route) can be
-    // dropped in here — swap this handler for a fetch() call to that service.
-    setStatus("sent");
-    setTimeout(() => setStatus("idle"), 3200);
+  function copyEmail() {
+    navigator.clipboard.writeText(profile.email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2400);
   }
 
   return (
-    <Section id="contact" index="08" label="Reach out" title="Establish Connection">
-      <div className="grid gap-14 lg:grid-cols-[1fr_0.8fr]">
+    <Section
+      id="contact"
+      index="08"
+      label="Get In Touch"
+      title="Connect &amp; Collaborate"
+      description="Available for AI/ML engineering positions, software development opportunities, and technical collaboration."
+    >
+      <div className="grid gap-8 lg:grid-cols-2">
+        {/* Direct Email Card with One-Click Copy */}
         <Reveal>
-          <form onSubmit={handleSubmit} className="max-w-lg space-y-8">
+          <div className="flex h-full flex-col justify-between rounded-xl border border-line bg-surface p-7 md:p-9">
             <div>
-              <label htmlFor="name" className="section-label mb-2 block">
-                Name
-              </label>
-              <input id="name" name="name" required placeholder="Your name" className={inputClasses} />
-            </div>
-            <div>
-              <label htmlFor="email" className="section-label mb-2 block">
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                placeholder="you@email.com"
-                className={inputClasses}
-              />
-            </div>
-            <div>
-              <label htmlFor="message" className="section-label mb-2 block">
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows={4}
-                placeholder="What would you like to talk about?"
-                className={inputClasses + " resize-none"}
-              />
+              <div className="inline-flex items-center gap-2 rounded-full border border-line bg-surface-elevated px-3 py-1 font-mono text-xs text-accent">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                Direct Communication
+              </div>
+
+              <h3 className="mt-6 font-display text-2xl font-semibold text-ink md:text-3xl">
+                Let&apos;s build something intelligent.
+              </h3>
+
+              <p className="mt-3 text-sm leading-relaxed text-muted">
+                Whether you have an opportunity in mind, want to discuss machine learning systems, or simply want to connect, feel free to reach out directly.
+              </p>
             </div>
 
-            <button
-              type="submit"
-              data-cursor="SEND"
-              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-signal px-7 py-3 font-mono text-xs uppercase tracking-widest2 text-signal transition-colors hover:bg-signal hover:text-void"
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                {status === "idle" ? (
-                  <motion.span
-                    key="idle"
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -6 }}
-                    className="flex items-center gap-2"
-                  >
-                    Send transmission
-                  </motion.span>
-                ) : (
-                  <motion.span
-                    key="sent"
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -6 }}
-                    className="flex items-center gap-2"
-                  >
-                    <Check size={14} /> Transmission received
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            </button>
-          </form>
+            <div className="mt-8 pt-6 border-t border-line space-y-4">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="flex-1 flex items-center justify-between rounded-lg border border-line bg-surface-elevated px-4 py-3 text-sm font-mono text-ink transition-colors hover:border-accent/40"
+                >
+                  <span className="flex items-center gap-2.5 truncate">
+                    <Mail size={16} className="text-accent shrink-0" />
+                    <span className="truncate">{profile.email}</span>
+                  </span>
+                  <ArrowUpRight size={14} className="text-muted shrink-0" />
+                </a>
+
+                <button
+                  onClick={copyEmail}
+                  aria-label="Copy email address"
+                  className="flex items-center justify-center gap-2 rounded-lg border border-line bg-surface-elevated px-4 py-3 font-mono text-xs text-muted transition-colors hover:text-ink hover:border-line-strong"
+                >
+                  {copied ? (
+                    <>
+                      <Check size={14} className="text-accent" />
+                      <span className="text-accent">Copied</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={14} />
+                      <span>Copy</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
         </Reveal>
 
-        <Reveal delay={0.1} className="space-y-5">
-          <a
-            href={`mailto:${profile.email}`}
-            data-cursor="EMAIL"
-            className="flex items-center gap-4 rounded-xl border border-line bg-panel/40 p-5 text-sm text-ink transition-colors hover:border-line-strong"
-          >
-            <Mail size={16} className="text-signal" />
-            {profile.email}
-          </a>
-          <a
-            href={`tel:${profile.phone.replace(/\s/g, "")}`}
-            data-cursor="CALL"
-            className="flex items-center gap-4 rounded-xl border border-line bg-panel/40 p-5 text-sm text-ink transition-colors hover:border-line-strong"
-          >
-            <Phone size={16} className="text-signal" />
-            {profile.phone}
-          </a>
-          <div className="flex items-center gap-4 rounded-xl border border-line bg-panel/40 p-5 text-sm text-ink">
-            <MapPin size={16} className="text-signal" />
-            {profile.location}
+        {/* Profiles & Contact Details */}
+        <Reveal delay={0.1}>
+          <div className="flex h-full flex-col justify-between gap-4">
+            {/* GitHub */}
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between rounded-xl border border-line bg-surface p-6 transition-all hover:border-line-strong hover:bg-surface-elevated"
+            >
+              <div className="flex items-center gap-4">
+                <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-line bg-surface-elevated text-ink transition-colors group-hover:text-accent">
+                  <Github size={20} />
+                </div>
+                <div>
+                  <h4 className="font-display text-base font-medium text-ink">
+                    GitHub
+                  </h4>
+                  <p className="font-mono text-xs text-muted">@jassim-mohammed</p>
+                </div>
+              </div>
+              <ArrowUpRight size={18} className="text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ink" />
+            </a>
+
+            {/* LinkedIn */}
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between rounded-xl border border-line bg-surface p-6 transition-all hover:border-line-strong hover:bg-surface-elevated"
+            >
+              <div className="flex items-center gap-4">
+                <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-line bg-surface-elevated text-ink transition-colors group-hover:text-accent">
+                  <Linkedin size={20} />
+                </div>
+                <div>
+                  <h4 className="font-display text-base font-medium text-ink">
+                    LinkedIn
+                  </h4>
+                  <p className="font-mono text-xs text-muted">jassim-mohammed</p>
+                </div>
+              </div>
+              <ArrowUpRight size={18} className="text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ink" />
+            </a>
+
+            {/* Telephone */}
+            <a
+              href={`tel:${profile.phone.replace(/\s/g, "")}`}
+              className="group flex items-center justify-between rounded-xl border border-line bg-surface p-6 transition-all hover:border-line-strong hover:bg-surface-elevated"
+            >
+              <div className="flex items-center gap-4">
+                <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-line bg-surface-elevated text-ink transition-colors group-hover:text-accent">
+                  <Phone size={20} />
+                </div>
+                <div>
+                  <h4 className="font-display text-base font-medium text-ink">
+                    Phone
+                  </h4>
+                  <p className="font-mono text-xs text-muted">{profile.phone}</p>
+                </div>
+              </div>
+              <ArrowUpRight size={18} className="text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ink" />
+            </a>
+
+            {/* Location */}
+            <div className="flex items-center gap-4 rounded-xl border border-line bg-surface p-6">
+              <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-line bg-surface-elevated text-accent">
+                <MapPin size={20} />
+              </div>
+              <div>
+                <h4 className="font-display text-base font-medium text-ink">
+                  Location
+                </h4>
+                <p className="font-mono text-xs text-muted">{profile.location}</p>
+              </div>
+            </div>
           </div>
         </Reveal>
       </div>

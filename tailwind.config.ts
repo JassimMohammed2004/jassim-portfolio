@@ -9,20 +9,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Core "lab" surfaces — near-black, never pure #000
-        void: "#0a0a0b",
-        surface: "#0f0f11",
-        panel: "#141417",
-        line: "rgba(245,245,244,0.08)",
-        "line-strong": "rgba(245,245,244,0.16)",
-        ink: "#f5f5f4",
-        muted: "#8a8a8f",
-        faint: "#5a5a60",
-        // Restrained phosphor-amber accent — instrumentation, not neon
-        signal: "#e8a33d",
-        "signal-dim": "rgba(232,163,61,0.35)",
-        "signal-soft": "rgba(232,163,61,0.08)",
-        ok: "#5fb88a",
+        // Core background & surface palette (charcoal/deep black)
+        void: "#09090b",
+        surface: "#111114",
+        "surface-elevated": "#17171c",
+        panel: "#111114",
+        line: "rgba(255, 255, 255, 0.08)",
+        "line-strong": "rgba(255, 255, 255, 0.16)",
+        ink: "#f5f5f5",
+        muted: "#a1a1aa",
+        faint: "#52525b",
+        // Muted lime accent color
+        accent: "#c5f82a",
+        "accent-dim": "rgba(197, 248, 42, 0.28)",
+        "accent-soft": "rgba(197, 248, 42, 0.08)",
+        "accent-hover": "#d4f933",
+        // System status
+        ok: "#22c55e",
       },
       fontFamily: {
         display: ["var(--font-display)", "sans-serif"],
@@ -30,24 +33,7 @@ const config: Config = {
         mono: ["var(--font-mono)", "monospace"],
       },
       letterSpacing: {
-        widest2: "0.28em",
-      },
-      backgroundImage: {
-        grain: "url('/grain.png')",
-      },
-      keyframes: {
-        blink: {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.25" },
-        },
-        marquee: {
-          "0%": { transform: "translateX(0%)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
-      },
-      animation: {
-        blink: "blink 2s ease-in-out infinite",
-        marquee: "marquee 18s linear infinite",
+        widest2: "0.2em",
       },
     },
   },

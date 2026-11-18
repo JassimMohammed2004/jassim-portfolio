@@ -1,30 +1,58 @@
-import { profile, navSections } from "@/data/portfolio";
+import { profile } from "@/data/portfolio";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="border-t border-line px-6 py-12 md:px-12">
-      <div className="mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:items-end md:justify-between">
+    <footer className="border-t border-line px-6 py-12 md:px-12 bg-void">
+      <div className="mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:items-center md:justify-between">
+        {/* Brand and role */}
         <div>
-          <p className="font-display text-lg text-ink">
-            JASSIM <span className="text-signal">//</span> AI &amp; DATA SCIENCE
+          <p className="font-display text-base font-medium text-ink">
+            {profile.name}
+            <span className="ml-2 font-mono text-xs text-accent">/ AI &amp; Software</span>
           </p>
-          <p className="mt-2 max-w-xs text-sm text-muted">Building intelligent systems.</p>
+          <p className="mt-1 text-xs text-muted">
+            Building intelligent, performant systems.
+          </p>
         </div>
 
-        <div className="flex flex-wrap gap-x-8 gap-y-3 font-mono text-xs uppercase tracking-widest2 text-muted">
-          <a href={`mailto:${profile.email}`} className="hover:text-signal">
-            {profile.email}
+        {/* Social and direct links */}
+        <div className="flex flex-wrap items-center gap-6 font-mono text-xs text-muted">
+          <a
+            href={profile.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 transition-colors hover:text-ink"
+          >
+            <Github size={14} />
+            <span>GitHub</span>
           </a>
-          <span>{profile.location}</span>
+
+          <a
+            href={profile.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 transition-colors hover:text-ink"
+          >
+            <Linkedin size={14} />
+            <span>LinkedIn</span>
+          </a>
+
+          <a
+            href={`mailto:${profile.email}`}
+            className="flex items-center gap-1.5 transition-colors hover:text-ink"
+          >
+            <Mail size={14} />
+            <span>Email</span>
+          </a>
         </div>
 
-        <nav className="flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs uppercase tracking-widest2 text-faint">
-          {navSections.map((s) => (
-            <a key={s.id} href={`#${s.id}`} className="hover:text-ink">
-              {s.label}
-            </a>
-          ))}
-        </nav>
+        {/* Copyright notice */}
+        <p className="font-mono text-xs text-faint">
+          &copy; {currentYear} {profile.name}. All rights reserved.
+        </p>
       </div>
     </footer>
   );

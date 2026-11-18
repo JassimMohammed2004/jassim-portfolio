@@ -27,13 +27,12 @@ const mono = JetBrains_Mono({
 });
 
 const title = `${profile.name} — ${profile.role}`;
-const description =
-  "Portfolio of Jassim Mohammed, an Artificial Intelligence and Data Science engineering student exploring AI, data analysis and software engineering.";
+const description = `${profile.tagline} Portfolio of Jassim Mohammed, AI/ML Engineer and Software Developer.`;
 
 export const metadata: Metadata = {
   title,
   description,
-  metadataBase: new URL("https://jassim-portfolio.example.com"),
+  metadataBase: new URL("https://jassim-portfolio-gamma.vercel.app"),
   openGraph: {
     title,
     description,
@@ -53,7 +52,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
-      <body>
+      <body className="bg-void text-ink font-body">
         <SmoothScrollProvider>
           <div className="grain-overlay" aria-hidden="true" />
           <Cursor />
