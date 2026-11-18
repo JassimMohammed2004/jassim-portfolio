@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Section from "./ui/Section";
 import { education } from "@/data/portfolio";
-import { GraduationCap } from "lucide-react";
+import { GraduationCap, Award, CheckCircle2 } from "lucide-react";
 import { cardItem, staggerContainer } from "@/lib/animations";
 
 export default function Education() {
@@ -11,51 +11,61 @@ export default function Education() {
     <Section
       id="education"
       index="05"
-      label="Academic Background"
-      title="Education &amp; Foundations"
-      description="Formal training in Artificial Intelligence &amp; Data Science alongside strong foundational mathematics and sciences."
+      label="Academic Pedigree"
+      title="Education &amp; Academic Milestones"
+      description="Formal graduation in Artificial Intelligence &amp; Data Science complemented by consistent mathematical foundations."
     >
       <motion.div
-        variants={staggerContainer(0.1, 0.05)}
+        variants={staggerContainer(0.12, 0.05)}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-10% 0px" }}
         className="grid gap-6 md:grid-cols-3"
       >
-        {education.map((e) => (
-          <motion.div
-            key={e.degree}
-            variants={cardItem}
-            whileHover={{ y: -3, borderColor: "rgba(255, 255, 255, 0.18)" }}
-            transition={{ duration: 0.2 }}
-            className="flex h-full flex-col justify-between rounded-xl border border-line bg-surface p-6 md:p-7 transition-colors hover:bg-surface-elevated/90"
-          >
-            <div>
-              <div className="flex items-center justify-between border-b border-line pb-3 text-xs font-mono">
-                <div className="flex items-center gap-1.5 text-accent">
-                  <GraduationCap size={15} />
-                  <span>{e.period}</span>
+        {education.map((e, idx) => {
+          const isPrimary = idx === 0;
+
+          return (
+            <motion.div
+              key={e.degree}
+              variants={cardItem}
+              whileHover={{ y: -4, borderColor: isPrimary ? "rgba(197, 248, 42, 0.6)" : "rgba(255, 255, 255, 0.2)" }}
+              transition={{ duration: 0.25 }}
+              className={`flex h-full flex-col justify-between rounded-3xl border p-7 transition-all ${
+                isPrimary
+                  ? "border-accent/40 bg-gradient-to-b from-surface-elevated via-surface to-void shadow-[0_12px_32px_rgba(197,248,42,0.12)]"
+                  : "border-line bg-surface/80"
+              }`}
+            >
+              <div>
+                <div className="flex items-center justify-between border-b border-line pb-4 text-xs font-mono">
+                  <div className="flex items-center gap-1.5 text-accent">
+                    <GraduationCap size={16} />
+                    <span className="font-semibold">{e.period}</span>
+                  </div>
+                  <span className="rounded-full border border-line bg-surface px-2.5 py-0.5 text-[11px] text-ink/90 font-medium">
+                    {e.statusBadge}
+                  </span>
+                </div>
+
+                <h3 className="mt-5 font-display text-lg font-bold leading-snug text-ink md:text-xl">
+                  {e.degree}
+                </h3>
+
+                <p className="mt-2 text-xs leading-relaxed text-muted">
+                  {e.institution}
+                </p>
+              </div>
+
+              <div className="mt-6 border-t border-line/60 pt-4">
+                <div className="flex items-start gap-2 text-xs text-muted">
+                  <CheckCircle2 size={13} className="mt-0.5 shrink-0 text-accent" />
+                  <span>{e.detail}</span>
                 </div>
               </div>
-
-              <h3 className="mt-4 font-display text-base font-medium leading-snug text-ink md:text-lg">
-                {e.degree}
-              </h3>
-
-              <p className="mt-2 text-xs leading-relaxed text-muted">
-                {e.institution}
-              </p>
-            </div>
-
-            {e.detail && (
-              <div className="mt-6 border-t border-line/60 pt-3">
-                <span className="inline-block rounded border border-line bg-surface-elevated px-2.5 py-1 font-mono text-xs text-accent">
-                  {e.detail}
-                </span>
-              </div>
-            )}
-          </motion.div>
-        ))}
+            </motion.div>
+          );
+        })}
       </motion.div>
     </Section>
   );

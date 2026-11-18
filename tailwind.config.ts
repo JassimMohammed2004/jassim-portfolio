@@ -9,22 +9,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Core background & surface palette (charcoal/deep black)
-        void: "#09090b",
-        surface: "#111114",
-        "surface-elevated": "#17171c",
-        panel: "#111114",
+        // Deep obsidian & rich charcoal palette
+        void: "#070709",
+        surface: "#0f0f13",
+        "surface-elevated": "#15151c",
+        panel: "#0f0f13",
         line: "rgba(255, 255, 255, 0.08)",
         "line-strong": "rgba(255, 255, 255, 0.16)",
-        ink: "#f5f5f5",
-        muted: "#a1a1aa",
-        faint: "#52525b",
-        // Muted lime accent color
-        accent: "#c5f82a",
+        ink: "#f5f5f7",
+        muted: "#94949e",
+        faint: "#4e4e58",
+        // Editorial Accent System
+        accent: "#C5F82A", // Muted electric lime
         "accent-dim": "rgba(197, 248, 42, 0.28)",
         "accent-soft": "rgba(197, 248, 42, 0.08)",
-        "accent-hover": "#d4f933",
-        // System status
+        "accent-hover": "#D4F933",
+        // Secondary editorial highlights for projects & badges
+        cyan: "#38bdf8",
+        violet: "#a78bfa",
         ok: "#22c55e",
       },
       fontFamily: {
@@ -33,7 +35,8 @@ const config: Config = {
         mono: ["var(--font-mono)", "monospace"],
       },
       letterSpacing: {
-        widest2: "0.2em",
+        widest2: "0.22em",
+        tightest: "-0.04em",
       },
     },
   },

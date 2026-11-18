@@ -1,181 +1,136 @@
 "use client";
 
-import { useRef, MouseEvent } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { ArrowUpRight, Github, ShieldAlert, Mic, Users } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Github, ExternalLink, CheckCircle2 } from "lucide-react";
 import Section from "./ui/Section";
 import Magnetic from "./ui/Magnetic";
+import ProjectArtwork from "./ui/ProjectArtwork";
 import { projects, ProjectItem } from "@/data/portfolio";
 import { cardItem, staggerContainer } from "@/lib/animations";
 
-const projectIcons: Record<string, React.ElementType> = {
-  "nids-ml": ShieldAlert,
-  "alexa-voice-assistant": Mic,
-  "collabify-ai": Users,
-};
-
-function ProjectCard({ project, index }: { project: ProjectItem; index: number }) {
-  const Icon = projectIcons[project.id] || ShieldAlert;
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  // Subtle 3D tilt tracking using spring physics
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseXSpring = useSpring(x, { stiffness: 150, damping: 20 });
-  const mouseYSpring = useSpring(y, { stiffness: 150, damping: 20 });
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["5deg", "-5deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-5deg", "5deg"]);
-
-  function handleMouseMove(e: MouseEvent<HTMLDivElement>) {
-    const rect = cardRef.current?.getBoundingClientRect();
-    if (!rect) return;
-
-    const width = rect.width;
-    const height = rect.height;
-
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-
-    x.set(xPct);
-    y.set(yPct);
-  }
-
-  function handleMouseLeave() {
-    x.set(0);
-    y.set(0);
-  }
+function ShowcaseCard({ project, index }: { project: ProjectItem; index: number }) {
+  const isEven = index % 2 === 0;
 
   return (
-    <motion.div
+    <motion.article
       variants={cardItem}
-      style={{ perspective: 800 }}
       data-cursor="card"
-      className="project-card h-full"
+      className="project-card group relative overflow-hidden rounded-3xl border border-line-strong bg-gradient-to-b from-surface via-surface to-void p-6 md:p-10 shadow-[0_16px_40px_rgba(0,0,0,0.6)] transition-all duration-300 hover:border-line-strong"
     >
-      <motion.div
-        ref={cardRef}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        style={{
-          rotateX,
-          rotateY,
-          transformStyle: "preserve-3d",
-        }}
-        whileHover={{ y: -4 }}
-        transition={{ duration: 0.2 }}
-        className="group relative flex h-full flex-col justify-between overflow-hidden rounded-xl border border-line bg-surface p-7 transition-colors duration-300 hover:border-accent/40 hover:bg-surface-elevated md:p-8"
-      >
-        {/* Subtle accent corner glow indicator on hover */}
-        <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-accent/5 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+      <div className={`grid items-center gap-8 lg:grid-cols-12 lg:gap-12 ${isEven ? "" : "lg:[&>*:first-child]:order-2"}`}>
+        {/* Visual Artwork composition (7 cols) */}
+        <div className="lg:col-span-7">
+          <motion.div
+            whileHover={{ scale: 1.015 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden rounded-2xl shadow-2xl"
+          >
+            <ProjectArtwork id={project.id} accentColor={project.accentColor} />
+          </motion.div>
+        </div>
 
-        <div className="relative z-10">
-          {/* Top category and index badge */}
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-line bg-surface-elevated text-accent transition-transform duration-300 group-hover:scale-105">
-                <Icon size={16} strokeWidth={1.8} />
-              </div>
-              <span className="font-mono text-[11px] uppercase tracking-wider text-muted">
+        {/* Text Editorial Details (5 cols) */}
+        <div className="flex flex-col justify-between space-y-6 lg:col-span-5">
+          <div>
+            {/* Index & Category tag */}
+            <div className="flex items-center gap-3 font-mono text-xs">
+              <span className="flex h-6 w-6 items-center justify-center rounded-md border border-line bg-surface-elevated font-semibold text-accent">
+                0{index + 1}
+              </span>
+              <span className="uppercase tracking-wider text-muted">
                 {project.category}
               </span>
             </div>
-            <span className="font-mono text-xs text-faint">0{index + 1}</span>
+
+            {/* Title & Subtitle */}
+            <h3 className="mt-4 font-display text-2xl font-bold tracking-tight text-ink md:text-3xl">
+              {project.title}
+            </h3>
+            <p className="mt-1 font-mono text-xs text-accent/90">
+              {project.subtitle}
+            </p>
+
+            {/* Description */}
+            <p className="mt-4 text-sm leading-relaxed text-muted">
+              {project.description}
+            </p>
+
+            {/* Architectural Highlights */}
+            {project.highlights && project.highlights.length > 0 && (
+              <div className="mt-5 space-y-2 border-t border-line/60 pt-4">
+                <span className="block font-mono text-[10px] uppercase tracking-wider text-faint">
+                  Architectural Core
+                </span>
+                <ul className="space-y-1.5 text-xs text-muted/90">
+                  {project.highlights.map((h, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <CheckCircle2 size={13} className="mt-0.5 shrink-0 text-accent" />
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
 
-          {/* Project Title */}
-          <h3 className="mt-5 font-display text-xl font-semibold leading-snug text-ink transition-colors duration-200 group-hover:text-accent md:text-2xl">
-            {project.title}
-          </h3>
-
-          {/* Clear Description */}
-          <p className="mt-3 text-sm leading-relaxed text-muted">
-            {project.description}
-          </p>
-
-          {/* Technical Highlights */}
-          {project.highlights && project.highlights.length > 0 && (
-            <div className="mt-5 space-y-1.5 border-t border-line/60 pt-4">
-              <span className="block font-mono text-[10px] uppercase tracking-wider text-faint">
-                Key Architectural Highlights
-              </span>
-              <ul className="space-y-1 text-xs text-muted/90">
-                {project.highlights.map((h, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-accent/80" />
-                    <span>{h}</span>
-                  </li>
-                ))}
-              </ul>
+          {/* Tech Badges & Actions */}
+          <div className="border-t border-line/60 pt-5">
+            <div className="mb-6 flex flex-wrap gap-1.5">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-md border border-line bg-surface-elevated px-2.5 py-1 font-mono text-[11px] text-muted transition-colors hover:text-ink hover:border-line-strong"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
-          )}
-        </div>
 
-        {/* Technology Stack & Action links */}
-        <div className="relative z-10 mt-8 border-t border-line pt-6">
-          <div className="flex flex-wrap gap-1.5 mb-6">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded border border-line bg-surface/80 px-2.5 py-1 font-mono text-[11px] text-muted transition-colors hover:text-ink hover:border-line-strong"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <div className="flex items-center justify-between text-xs font-mono">
-            {/* GitHub repo button with magnetic pull */}
-            {project.githubUrl ? (
-              <Magnetic strength={0.22}>
-                <motion.a
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-md border border-line bg-surface px-3 py-1.5 text-ink transition-colors hover:border-accent hover:text-accent"
-                >
+            <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
+              {/* GitHub action button */}
+              {project.githubUrl ? (
+                <Magnetic strength={0.2}>
+                  <motion.a
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl bg-accent px-4 py-2 font-medium text-void transition-colors hover:bg-accent-hover"
+                  >
+                    <Github size={14} />
+                    <span>View Repository</span>
+                    <ArrowUpRight size={13} />
+                  </motion.a>
+                </Magnetic>
+              ) : (
+                <span className="inline-flex items-center gap-2 rounded-lg border border-line bg-surface px-3 py-1.5 text-faint">
                   <Github size={13} />
-                  <span>Repository</span>
-                  <ArrowUpRight size={12} />
-                </motion.a>
-              </Magnetic>
-            ) : (
-              <span className="inline-flex items-center gap-1.5 text-faint">
-                <Github size={13} />
-                <span>Repo in staging</span>
-              </span>
-            )}
+                  <span>Repository in Staging</span>
+                </span>
+              )}
 
-            {/* Live demo button with magnetic pull */}
-            {project.liveUrl ? (
-              <Magnetic strength={0.22}>
-                <motion.a
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-accent transition-colors hover:text-accent-hover"
-                >
-                  <span>Live Demo</span>
-                  <ArrowUpRight size={13} />
-                </motion.a>
-              </Magnetic>
-            ) : (
-              <span className="text-[11px] text-faint uppercase tracking-wider">
-                Active System
-              </span>
-            )}
+              {/* Live demo button */}
+              {project.liveUrl && (
+                <Magnetic strength={0.2}>
+                  <motion.a
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-line bg-surface px-3 py-1.5 text-accent transition-colors hover:border-accent"
+                  >
+                    <span>Live Showcase</span>
+                    <ExternalLink size={13} />
+                  </motion.a>
+                </Magnetic>
+              )}
+            </div>
           </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </motion.article>
   );
 }
 
@@ -184,19 +139,19 @@ export default function Projects() {
     <Section
       id="projects"
       index="03"
-      label="Featured Systems"
-      title="Engineering Project Showcase"
-      description="Selected systems highlighting practical machine learning, voice AI, and intelligent collaboration architecture."
+      label="Curated Systems"
+      title="Engineering Showcase"
+      description="Three distinct production-grade systems spanning Machine Learning security telemetry, acoustic conversational AI, and distributed collaboration."
     >
       <motion.div
-        variants={staggerContainer(0.12, 0.05)}
+        variants={staggerContainer(0.15, 0.05)}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-10% 0px" }}
-        className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+        className="space-y-12"
       >
         {projects.map((p, idx) => (
-          <ProjectCard key={p.id} project={p} index={idx} />
+          <ShowcaseCard key={p.id} project={p} index={idx} />
         ))}
       </motion.div>
     </Section>

@@ -4,26 +4,29 @@
 export interface ProjectItem {
   id: string;
   title: string;
-  description: string;
+  subtitle: string;
   category: string;
+  description: string;
   tags: string[];
   githubUrl?: string | null;
   liveUrl?: string | null;
-  highlights?: string[];
+  highlights: string[];
+  accentColor: string;
 }
 
 export const profile = {
   name: "Jassim Mohammed",
   firstName: "Jassim",
   lastName: "Mohammed",
-  role: "AI/ML Engineer & Software Developer",
+  role: "AI & Machine Learning Engineer | Software Developer",
   shortRole: "AI/ML Engineer",
   tagline:
     "Building intelligent systems through AI, machine learning, and software engineering.",
   bio: [
-    "I am an Artificial Intelligence & Data Science engineer focused on designing practical machine learning solutions and intelligent software systems.",
-    "My technical focus spans statistical learning, deep learning model integration, data pipeline engineering, and building resilient backend architectures that bridge machine intelligence with real-world applications.",
+    "I am an Artificial Intelligence & Data Science graduate engineer with a deep passion for designing practical machine learning solutions and scalable intelligent software.",
+    "Having completed my B.Tech in Artificial Intelligence and Data Science, I bridge mathematical theory with production-grade code: training statistical classifiers, integrating foundation models, constructing reliable data pipelines, and architecting performant full-stack systems.",
   ],
+  educationSummary: "B.Tech in Artificial Intelligence & Data Science (Completed / Graduated)",
   location: "Kottayam, Kerala, India",
   email: "jassim974685@gmail.com",
   phone: "+91 9746859565",
@@ -67,47 +70,53 @@ export const projects: ProjectItem[] = [
   {
     id: "nids-ml",
     title: "Network Intrusion Detection System",
-    category: "Machine Learning & Security",
+    subtitle: "Autonomous ML Defense & Telemetry Classification",
+    category: "Machine Learning & Network Security",
     description:
-      "A machine learning-based network security system designed to analyze traffic flow patterns, identify anomalous behaviors, and classify malicious intrusion attempts in real time.",
+      "A high-precision machine learning system engineered to inspect streaming network packet features, isolate anomalous behavioral signatures, and autonomously classify hostile network intrusions in real time.",
     tags: ["Python", "Machine Learning", "Scikit-learn", "Data Analysis", "Security"],
-    githubUrl: null, // Placeholder in centralized data until repository is published
+    githubUrl: null, // Staging placeholder
     liveUrl: null,
     highlights: [
-      "Traffic feature extraction & normalization pipeline",
-      "Multi-class anomaly classification model",
-      "Evaluation against structured intrusion benchmark datasets",
+      "Feature extraction, protocol discretization & normalization pipeline",
+      "Multi-class anomaly classifier benchmarking malicious attack patterns",
+      "Robust statistical evaluation against adversarial network flows",
     ],
+    accentColor: "#C5F82A",
   },
   {
     id: "alexa-voice-assistant",
     title: "Alexa AI Voice Assistant",
+    subtitle: "Conversational Acoustic Pipeline & Task Automation",
     category: "AI & Natural Language Systems",
     description:
-      "A personal AI voice assistant application integrating speech recognition, command parsing, and automated response generation for hands-free desktop and task automation.",
+      "A personal AI voice assistant application integrating continuous speech recognition, lexical intent parsing, and automated response synthesis for hands-free workflow automation and machine control.",
     tags: ["Python", "AI", "Speech Recognition", "Automation", "NLP"],
-    githubUrl: null, // Placeholder in centralized data until repository is published
+    githubUrl: null, // Staging placeholder
     liveUrl: null,
     highlights: [
-      "Real-time voice capture & speech-to-text processing",
-      "Intent mapping and multi-action command execution",
-      "Audio playback & intelligent conversational responses",
+      "Real-time audio stream acquisition & acoustic-to-text inference",
+      "Intent mapping & multi-threaded task automation execution",
+      "Context-aware voice feedback with low-latency audio synthesis",
     ],
+    accentColor: "#38bdf8",
   },
   {
     id: "collabify-ai",
     title: "Collabify AI",
+    subtitle: "Distributed Collaboration & Workspace Intelligence",
     category: "Intelligent Collaboration Platform",
     description:
-      "An AI-powered collaboration project conceptualized to enhance team workflows, assist document synthesis, and streamline communication through integrated AI workflows.",
+      "An AI-augmented collaboration architecture conceived to empower distributed engineering teams, synthesize multi-document knowledge streams, and streamline technical communication via modular microservices.",
     tags: ["Python", "FastAPI", "LLM integration", "REST APIs", "JavaScript"],
-    githubUrl: null, // Placeholder in centralized data until repository is published
+    githubUrl: null, // Staging placeholder
     liveUrl: null,
     highlights: [
-      "Intelligent workflow orchestration & shared workspaces",
-      "Context-aware prompt and document synthesis interfaces",
-      "Modular microservice integration via clean REST APIs",
+      "Dynamic prompt engineering & contextual document intelligence",
+      "Modular microservice integration built upon high-throughput FastAPI endpoints",
+      "Synchronous state synchronization across collaborative team canvases",
     ],
+    accentColor: "#a78bfa",
   },
 ];
 
@@ -115,52 +124,55 @@ export const experience = [
   {
     organization: "Oasis Infobyte",
     role: "Python Online Internship",
-    period: "Internship",
+    period: "Internship Completed",
     description:
-      "Worked on core Python programming tasks, developing automation scripts, algorithm implementations, and applied problem-solving modules.",
+      "Developed modular Python software utilities, implemented algorithmic solutions, and built automated test and data handling scripts.",
   },
   {
     organization: "SMEC Technology, Ernakulam",
     role: "Data Science Internship",
-    period: "Internship",
+    period: "Internship Completed",
     description:
-      "Engaged in hands-on data science workflows including data cleaning, exploratory data analysis, and predictive modeling practices.",
+      "Executed end-to-end data science workflows spanning exploratory data analysis, dataset preprocessing, feature engineering, and predictive model validation.",
   },
 ];
 
 export const education = [
   {
-    period: "2022 — 2026",
+    period: "Completed & Graduated",
     degree: "B.Tech in Artificial Intelligence & Data Science",
     institution: "Dhanalakshmi Srinivasan University, Tamil Nadu",
-    detail: "Currently pursuing undergraduate degree",
+    statusBadge: "Graduated",
+    detail: "Bachelor of Technology — Specialization in Artificial Intelligence and Data Science (Degree Completed)",
   },
   {
-    period: "Higher Secondary",
+    period: "Completed",
     degree: "Higher Secondary Education (Class XII)",
     institution: "St John the Baptist's HSS, Nedumkunnam, Kerala",
-    detail: "Academic Score: 93%",
+    statusBadge: "93%",
+    detail: "Core Sciences & Mathematics — Final Academic Score: 93%",
   },
   {
-    period: "Secondary (SSLC)",
+    period: "Completed",
     degree: "Secondary School Leaving Certificate (Class X)",
     institution: "St John the Baptist's HSS, Nedumkunnam, Kerala",
-    detail: "Academic Score: 96%",
+    statusBadge: "96%",
+    detail: "General Academics & Foundation Sciences — Final Academic Score: 96%",
   },
 ];
 
 export const research = [
   {
     title: "Advancement in AI for Sustainable Agriculture",
-    type: "Paper Presentation",
+    type: "Academic Presentation",
     description:
-      "Presented research on leveraging machine learning and data-driven methods for sustainable farming practices and crop monitoring.",
+      "Presented research analyzing the application of predictive machine learning models and sensor data fusion toward optimized crop yields and sustainable agronomy.",
   },
   {
     title: "Machine Vision in Agriculture",
-    type: "Paper Presentation",
+    type: "Academic Presentation",
     description:
-      "Explored visual recognition systems and computer vision algorithms applied to agricultural health assessment and automated sorting.",
+      "Investigated convolutional neural structures and optical sensing pipelines applied to real-time plant pathology diagnosis and quality grading.",
   },
 ];
 
@@ -176,12 +188,12 @@ export const certifications = [
   {
     title: "Python Programming",
     issuer: "Oasis Infobyte",
-    field: "Software Development",
+    field: "Software Engineering",
   },
   {
     title: "Complete Course on Excelling at Business and Management",
     issuer: "Sproltts",
-    field: "Management & Professional Practice",
+    field: "Professional Leadership",
   },
 ];
 
