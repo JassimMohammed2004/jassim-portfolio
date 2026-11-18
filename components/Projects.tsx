@@ -1,10 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef, useState, MouseEvent } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Github, ShieldAlert, Mic, Users } from "lucide-react";
 import Section from "./ui/Section";
-import Reveal from "./ui/Reveal";
 import { projects, ProjectItem } from "@/data/portfolio";
+import { cardItem, staggerContainer } from "@/lib/animations";
 
 const projectIcons: Record<string, React.ElementType> = {
   "nids-ml": ShieldAlert,
@@ -14,15 +15,67 @@ const projectIcons: Record<string, React.ElementType> = {
 
 function ProjectCard({ project, index }: { project: ProjectItem; index: number }) {
   const Icon = projectIcons[project.id] || ShieldAlert;
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // Subtle 3D tilt tracking using spring physics
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x, { stiffness: 150, damping: 20 });
+  const mouseYSpring = useSpring(y, { stiffness: 150, damping: 20 });
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["5deg", "-5deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-5deg", "5deg"]);
+
+  function handleMouseMove(e: MouseEvent<HTMLDivElement>) {
+    const rect = cardRef.current?.getBoundingClientRect();
+    if (!rect) return;
+
+    const width = rect.width;
+    const height = rect.height;
+
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+
+    x.set(xPct);
+    y.set(yPct);
+  }
+
+  function handleMouseLeave() {
+    x.set(0);
+    y.set(0);
+  }
 
   return (
-    <Reveal delay={index * 0.1}>
-      <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-xl border border-line bg-surface p-7 transition-all duration-300 hover:border-line-strong hover:bg-surface-elevated md:p-8">
-        <div>
+    <motion.div
+      variants={cardItem}
+      style={{ perspective: 800 }}
+      className="h-full"
+    >
+      <motion.div
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          rotateX,
+          rotateY,
+          transformStyle: "preserve-3d",
+        }}
+        whileHover={{ y: -4 }}
+        transition={{ duration: 0.2 }}
+        className="group relative flex h-full flex-col justify-between overflow-hidden rounded-xl border border-line bg-surface p-7 transition-colors duration-300 hover:border-accent/40 hover:bg-surface-elevated md:p-8"
+      >
+        {/* Subtle accent corner glow indicator on hover */}
+        <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-accent/5 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+
+        <div className="relative z-10">
           {/* Top category and index badge */}
           <div className="flex items-start justify-between gap-4">
             <div className="flex items-center gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-line bg-surface-elevated text-accent">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-line bg-surface-elevated text-accent transition-transform duration-300 group-hover:scale-105">
                 <Icon size={16} strokeWidth={1.8} />
               </div>
               <span className="font-mono text-[11px] uppercase tracking-wider text-muted">
@@ -33,7 +86,7 @@ function ProjectCard({ project, index }: { project: ProjectItem; index: number }
           </div>
 
           {/* Project Title */}
-          <h3 className="mt-5 font-display text-xl font-semibold leading-snug text-ink transition-colors group-hover:text-accent md:text-2xl">
+          <h3 className="mt-5 font-display text-xl font-semibold leading-snug text-ink transition-colors duration-200 group-hover:text-accent md:text-2xl">
             {project.title}
           </h3>
 
@@ -61,12 +114,12 @@ function ProjectCard({ project, index }: { project: ProjectItem; index: number }
         </div>
 
         {/* Technology Stack & Action links */}
-        <div className="mt-8 border-t border-line pt-6">
+        <div className="relative z-10 mt-8 border-t border-line pt-6">
           <div className="flex flex-wrap gap-1.5 mb-6">
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded border border-line bg-surface px-2.5 py-1 font-mono text-[11px] text-muted transition-colors hover:text-ink"
+                className="rounded border border-line bg-surface/80 px-2.5 py-1 font-mono text-[11px] text-muted transition-colors hover:text-ink hover:border-line-strong"
               >
                 {tag}
               </span>
@@ -76,7 +129,9 @@ function ProjectCard({ project, index }: { project: ProjectItem; index: number }
           <div className="flex items-center justify-between text-xs font-mono">
             {/* GitHub repo button */}
             {project.githubUrl ? (
-              <a
+              <motion.a
+                whileHover={{ scale: 1.03, y: -1 }}
+                whileTap={{ scale: 0.97 }}
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -85,7 +140,7 @@ function ProjectCard({ project, index }: { project: ProjectItem; index: number }
                 <Github size={13} />
                 <span>Repository</span>
                 <ArrowUpRight size={12} />
-              </a>
+              </motion.a>
             ) : (
               <span className="inline-flex items-center gap-1.5 text-faint">
                 <Github size={13} />
@@ -95,7 +150,9 @@ function ProjectCard({ project, index }: { project: ProjectItem; index: number }
 
             {/* Live demo button */}
             {project.liveUrl ? (
-              <a
+              <motion.a
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -103,7 +160,7 @@ function ProjectCard({ project, index }: { project: ProjectItem; index: number }
               >
                 <span>Live Demo</span>
                 <ArrowUpRight size={13} />
-              </a>
+              </motion.a>
             ) : (
               <span className="text-[11px] text-faint uppercase tracking-wider">
                 Active System
@@ -111,8 +168,8 @@ function ProjectCard({ project, index }: { project: ProjectItem; index: number }
             )}
           </div>
         </div>
-      </div>
-    </Reveal>
+      </motion.div>
+    </motion.div>
   );
 }
 
@@ -125,11 +182,17 @@ export default function Projects() {
       title="Engineering Project Showcase"
       description="Selected systems highlighting practical machine learning, voice AI, and intelligent collaboration architecture."
     >
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <motion.div
+        variants={staggerContainer(0.12, 0.05)}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-10% 0px" }}
+        className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+      >
         {projects.map((p, idx) => (
           <ProjectCard key={p.id} project={p} index={idx} />
         ))}
-      </div>
+      </motion.div>
     </Section>
   );
 }

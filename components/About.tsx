@@ -1,9 +1,11 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Section from "./ui/Section";
 import Reveal from "./ui/Reveal";
 import { profile } from "@/data/portfolio";
 import { Cpu, Database, Network, ShieldCheck } from "lucide-react";
+import { cardItem, staggerContainer } from "@/lib/animations";
 
 const focusAreas = [
   {
@@ -38,9 +40,13 @@ export default function About() {
       description="A disciplined engineering approach blending mathematical data models with reliable, scalable software."
     >
       <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-        {/* Narrative bio */}
-        <Reveal className="space-y-6">
-          <div className="rounded-xl border border-line bg-surface p-7 md:p-9 space-y-5">
+        {/* Narrative bio card */}
+        <Reveal>
+          <motion.div
+            whileHover={{ y: -2 }}
+            transition={{ duration: 0.3 }}
+            className="rounded-xl border border-line bg-surface p-7 md:p-9 space-y-5 transition-colors hover:border-line-strong hover:bg-surface-elevated/70"
+          >
             <h3 className="font-display text-xl font-medium text-ink">
               About Jassim Mohammed
             </h3>
@@ -62,32 +68,42 @@ export default function About() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </Reveal>
 
-        {/* Pillars / Technical Foundations */}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-          {focusAreas.map((area, idx) => {
+        {/* Pillars / Technical Foundations with staggered appearance */}
+        <motion.div
+          variants={staggerContainer(0.09, 0.1)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-10% 0px" }}
+          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1"
+        >
+          {focusAreas.map((area) => {
             const Icon = area.icon;
             return (
-              <Reveal key={area.title} delay={idx * 0.08}>
-                <div className="rounded-xl border border-line bg-surface/50 p-6 transition-all hover:border-line-strong hover:bg-surface-elevated">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-line bg-surface text-accent">
-                      <Icon size={18} strokeWidth={1.8} />
-                    </div>
-                    <h4 className="font-display text-base font-medium text-ink">
-                      {area.title}
-                    </h4>
+              <motion.div
+                key={area.title}
+                variants={cardItem}
+                whileHover={{ x: 3, borderColor: "rgba(255, 255, 255, 0.18)" }}
+                transition={{ duration: 0.25 }}
+                className="group rounded-xl border border-line bg-surface/60 p-6 transition-colors hover:bg-surface-elevated"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-line bg-surface text-accent transition-transform duration-300 group-hover:scale-105">
+                    <Icon size={18} strokeWidth={1.8} />
                   </div>
-                  <p className="mt-3 text-xs leading-relaxed text-muted">
-                    {area.desc}
-                  </p>
+                  <h4 className="font-display text-base font-medium text-ink transition-colors group-hover:text-accent">
+                    {area.title}
+                  </h4>
                 </div>
-              </Reveal>
+                <p className="mt-3 text-xs leading-relaxed text-muted">
+                  {area.desc}
+                </p>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </Section>
   );

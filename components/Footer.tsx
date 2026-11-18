@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { profile } from "@/data/portfolio";
 import { Github, Linkedin, Mail } from "lucide-react";
 
@@ -18,35 +21,38 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Social and direct links */}
+        {/* Social and direct links with subtle hover animation */}
         <div className="flex flex-wrap items-center gap-6 font-mono text-xs text-muted">
-          <a
+          <motion.a
+            whileHover={{ y: -1.5, color: "#f5f5f5" }}
             href={profile.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 transition-colors hover:text-ink"
+            className="flex items-center gap-1.5 transition-colors"
           >
             <Github size={14} />
             <span>GitHub</span>
-          </a>
+          </motion.a>
 
-          <a
+          <motion.a
+            whileHover={{ y: -1.5, color: "#f5f5f5" }}
             href={profile.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 transition-colors hover:text-ink"
+            className="flex items-center gap-1.5 transition-colors"
           >
             <Linkedin size={14} />
             <span>LinkedIn</span>
-          </a>
+          </motion.a>
 
-          <a
+          <motion.a
+            whileHover={{ y: -1.5, color: "#f5f5f5" }}
             href={`mailto:${profile.email}`}
-            className="flex items-center gap-1.5 transition-colors hover:text-ink"
+            className="flex items-center gap-1.5 transition-colors"
           >
             <Mail size={14} />
             <span>Email</span>
-          </a>
+          </motion.a>
         </div>
 
         {/* Copyright notice */}
