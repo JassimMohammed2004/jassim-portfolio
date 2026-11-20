@@ -15,7 +15,7 @@ function CinematicProjectStage({ project, index }: { project: ProjectItem; index
     <motion.article
       variants={cardItem}
       data-cursor="card"
-      className="project-card group relative overflow-hidden rounded-[28px] border border-line-strong bg-gradient-to-b from-surface via-[#2d3035] to-void p-6 md:p-12 shadow-[0_24px_60px_rgba(0,0,0,0.5)] transition-all duration-300 hover:border-line-strong"
+      className="project-card group relative overflow-hidden rounded-[28px] border border-line-strong bg-gradient-to-b from-surface via-[#221e33] to-void p-6 md:p-12 shadow-[0_24px_60px_rgba(15,12,24,0.6)] transition-all duration-300 hover:border-line-strong"
     >
       <div className={`grid items-center gap-8 lg:grid-cols-12 lg:gap-14 ${isEven ? "" : "lg:[&>*:first-child]:order-2"}`}>
         {/* Visual Artwork Installation (7 cols) */}

@@ -49,31 +49,39 @@ export default function Scene() {
       canvas.height = height * dpr;
       ctx?.scale(dpr, dpr);
 
-      // Concept Art chiaroscuro lighting orbs
+      // Concept Art painterly atmospheric lighting blooms (lavender, violet, pastel pink, soft blue, and peach)
       orbs = [
         {
-          x: width * 0.25,
-          y: height * 0.35,
-          radius: Math.min(width, height) * 0.45,
-          color: "rgba(245, 158, 11, 0.07)", // Warm golden amber glow
-          vx: 0.1,
-          vy: 0.08,
+          x: width * 0.22,
+          y: height * 0.32,
+          radius: Math.min(width, height) * 0.55,
+          color: "rgba(157, 124, 216, 0.08)", // Atmospheric violet bloom
+          vx: 0.09,
+          vy: 0.07,
         },
         {
           x: width * 0.78,
-          y: height * 0.45,
+          y: height * 0.38,
           radius: Math.min(width, height) * 0.5,
-          color: "rgba(0, 229, 255, 0.04)", // Sci-fi cyan rim glow
-          vx: -0.09,
-          vy: 0.09,
+          color: "rgba(140, 170, 238, 0.07)", // Dreamlike soft sky blue
+          vx: -0.08,
+          vy: 0.08,
         },
         {
-          x: width * 0.5,
+          x: width * 0.45,
+          y: height * 0.75,
+          radius: Math.min(width, height) * 0.48,
+          color: "rgba(244, 184, 228, 0.06)", // Soft pastel pink horizon
+          vx: 0.07,
+          vy: -0.07,
+        },
+        {
+          x: width * 0.82,
           y: height * 0.82,
-          radius: Math.min(width, height) * 0.4,
-          color: "rgba(245, 158, 11, 0.05)", // Warm lantern horizon
-          vx: 0.08,
-          vy: -0.08,
+          radius: Math.min(width, height) * 0.42,
+          color: "rgba(245, 194, 165, 0.05)", // Warm sunset peach glow
+          vx: -0.06,
+          vy: -0.06,
         },
       ];
     }
@@ -131,7 +139,7 @@ export default function Scene() {
         ctx!.fill();
       }
 
-      // Cursor subtle ambient highlight
+      // Cursor subtle ambient highlight with soft lavender hue
       if (mouse.x > 0 && mouse.y > 0) {
         const spot = ctx!.createRadialGradient(
           mouse.x,
@@ -141,7 +149,7 @@ export default function Scene() {
           mouse.y,
           width < 768 ? 200 : 360
         );
-        spot.addColorStop(0, "rgba(245, 158, 11, 0.035)");
+        spot.addColorStop(0, "rgba(196, 167, 231, 0.05)");
         spot.addColorStop(1, "transparent");
         ctx!.fillStyle = spot;
         ctx!.fillRect(0, 0, width, height);

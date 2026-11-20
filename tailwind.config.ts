@@ -9,35 +9,42 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Behance Concept Artist Reference Palette
-        // Core Canvas: Dark Slate Charcoal / Matteboard (gallery presentation background)
-        void: "#282a2e",             // Deep presentation slate / dark vignette
-        surface: "#35383d",          // Core Canson matte-board canvas
-        "surface-elevated": "#404348", // Elevated artwork process card
-        panel: "#2d3034",            // Darker inset panel
-        line: "rgba(255, 255, 255, 0.12)",
-        "line-strong": "rgba(255, 255, 255, 0.22)",
+        // Concept Artist Reference Palette: Atmospheric Dusk / Painterly Violet & Lavender
+        // Core atmospheric background: Deep twilight violet-slate
+        void: "#181524",               // Deep atmospheric twilight purple / night sky
+        surface: "#242036",            // Soft painterly violet-charcoal surface
+        "surface-elevated": "#302b46", // Elevated misty lavender-slate panel
+        panel: "#1e1a2d",              // Recessed ambient violet panel
+        line: "rgba(224, 215, 245, 0.12)",        // Translucent lavender hairline
+        "line-strong": "rgba(235, 222, 255, 0.22)", // Defined lavender border
 
-        // Typography: Pure gallery white & clean neutral slate
-        ivory: "#ffffff",            // High-contrast clean white headings
-        "ivory-muted": "#e5e7eb",    // Secondary subtitles
+        // Typography: Warm white, misty lavender-grey, muted atmospheric tones
+        ivory: "#fbf9fe",              // Warm soft white headings
+        "ivory-muted": "#ddd6ed",      // Secondary soft lavender-grey
         ink: "#ffffff",
-        muted: "#9ca3af",            // Neutral caption & body text
-        faint: "#6b7280",            // Technical metadata grey
+        muted: "#aba3c0",              // Muted dusky lavender-grey body text
+        faint: "#7c7395",              // Soft atmospheric metadata
 
-        // Behance Concept Art Accent Palette
-        accent: "#f59e0b",           // Warm ochre / golden amber
-        "accent-dim": "rgba(245, 158, 11, 0.28)",
-        "accent-soft": "rgba(245, 158, 11, 0.10)",
-        "accent-hover": "#d97706",   // Deep warm amber hover
-        amber: "#f59e0b",
+        // Primary Concept Art Accent: Lavender / Luminous Violet
+        accent: "#c4a7e7",             // Radiant soft lavender
+        "accent-dim": "rgba(196, 167, 231, 0.28)",
+        "accent-soft": "rgba(196, 167, 231, 0.12)",
+        "accent-hover": "#d6beff",     // Luminous lavender hover
+        lavender: "#c4a7e7",
+        violet: "#9d7cd8",
+        purple: "#7e57c2",
 
-        // Secondary Concept Art Accents
-        olive: "#f59e0b",            // Unified with warm golden amber
-        "olive-dim": "rgba(245, 158, 11, 0.25)",
-        "olive-soft": "rgba(245, 158, 11, 0.10)",
-        cyan: "#00e5ff",             // Sci-fi / magical cyan
-        crimson: "#be185d",          // Character seal / focal crimson
+        // Secondary Concept Art Accents: Pastel Pink, Soft Blue, Warm Peach & Muted Orange
+        olive: "#c4a7e7",              // Unified with primary radiant lavender
+        "olive-dim": "rgba(196, 167, 231, 0.25)",
+        "olive-soft": "rgba(196, 167, 231, 0.12)",
+        pink: "#f4b8e4",               // Pastel dreamlike pink
+        rose: "#ea999c",               // Soft dusty rose
+        peach: "#f5c2a5",              // Warm painterly peach
+        orange: "#e59866",             // Muted dusk orange
+        amber: "#f5c2a5",              // Peach / warm sunset amber
+        blue: "#8caaee",               // Soft painterly sky blue
+        cyan: "#85c1dc",               // Misty pastel cyan
       },
       fontFamily: {
         display: ["var(--font-display)", "sans-serif"],

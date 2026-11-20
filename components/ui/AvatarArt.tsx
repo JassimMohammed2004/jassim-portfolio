@@ -62,8 +62,8 @@ export default function AvatarArt({ className = "" }: AvatarInteractiveProps) {
       style={{ perspective: 1000 }}
       className={`relative flex items-center justify-center ${className}`}
     >
-      {/* Warm amber & slate atmospheric halo */}
-      <div className="pointer-events-none absolute -inset-8 rounded-[48px] bg-gradient-to-tr from-accent/20 via-surface/40 to-cyan/15 blur-3xl opacity-75" />
+      {/* Atmospheric twilight purple & dreamlike pink halo */}
+      <div className="pointer-events-none absolute -inset-8 rounded-[48px] bg-gradient-to-tr from-violet/25 via-pink/20 to-blue/20 blur-3xl opacity-80" />
 
       {/* Main 3D Interactive Framed Canvas */}
       <motion.div
@@ -74,19 +74,19 @@ export default function AvatarArt({ className = "" }: AvatarInteractiveProps) {
         }}
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.3 }}
-        className="relative aspect-[4/5] w-full max-w-[340px] sm:max-w-[400px] overflow-hidden rounded-[36px] border border-line-strong bg-gradient-to-b from-surface via-[#2d3035] to-void p-3.5 shadow-[0_36px_90px_rgba(0,0,0,0.65)]"
+        className="relative aspect-[4/5] w-full max-w-[340px] sm:max-w-[400px] overflow-hidden rounded-[36px] border border-line-strong bg-gradient-to-b from-surface via-[#262238] to-void p-3.5 shadow-[0_36px_90px_rgba(15,12,24,0.7)]"
       >
         {/* Subtle fine-art grid texture */}
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.08]"
           style={{
-            backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.8) 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(rgba(224, 215, 245, 0.8) 1px, transparent 1px)`,
             backgroundSize: "20px 20px",
           }}
         />
 
         {/* Inner gallery chamber */}
-        <div className="relative flex h-full w-full flex-col justify-between overflow-hidden rounded-[28px] border border-line bg-gradient-to-b from-[#2a2c31] via-[#222428] to-void p-6 md:p-8">
+        <div className="relative flex h-full w-full flex-col justify-between overflow-hidden rounded-[28px] border border-line bg-gradient-to-b from-[#25213a] via-[#1c182d] to-void p-6 md:p-8">
           {/* Top HUD Telemetry status */}
           <div className="relative z-20 flex items-center justify-between text-[11px] font-mono tracking-wider text-muted">
             <span className="flex items-center gap-1.5 text-accent font-medium">
@@ -138,18 +138,18 @@ export default function AvatarArt({ className = "" }: AvatarInteractiveProps) {
               >
                 <defs>
                   <linearGradient id="hoodieGrad" x1="20" y1="120" x2="180" y2="240" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#35383d" />
-                    <stop offset="0.5" stopColor="#2a2c31" />
-                    <stop offset="1" stopColor="#1e2024" />
+                    <stop stopColor="#302b46" />
+                    <stop offset="0.5" stopColor="#242036" />
+                    <stop offset="1" stopColor="#181524" />
                   </linearGradient>
                   <linearGradient id="cowlGrad" x1="50" y1="60" x2="150" y2="180" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#3f4248" />
-                    <stop offset="1" stopColor="#25272c" />
+                    <stop stopColor="#3d3756" />
+                    <stop offset="1" stopColor="#221e33" />
                   </linearGradient>
                   <linearGradient id="visorGrad" x1="70" y1="100" x2="130" y2="125" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#f59e0b" stopOpacity="0.9" />
-                    <stop offset="0.5" stopColor="#d97706" stopOpacity="0.95" />
-                    <stop offset="1" stopColor="#00e5ff" stopOpacity="0.8" />
+                    <stop stopColor="#f4b8e4" stopOpacity="0.95" />
+                    <stop offset="0.5" stopColor="#c4a7e7" stopOpacity="0.95" />
+                    <stop offset="1" stopColor="#8caaee" stopOpacity="0.9" />
                   </linearGradient>
                   <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
                     <feGaussianBlur stdDeviation="3" result="blur" />
@@ -161,27 +161,27 @@ export default function AvatarArt({ className = "" }: AvatarInteractiveProps) {
                 <path
                   d="M30 240 L35 185 C37 165 52 150 72 145 L100 142 L128 145 C148 150 163 165 165 185 L170 240 Z"
                   fill="url(#hoodieGrad)"
-                  stroke="rgba(255,255,255,0.18)"
+                  stroke="rgba(224,215,245,0.2)"
                   strokeWidth="1.5"
                 />
 
                 {/* Hoodie chest zipper seam & technical lanyard */}
-                <line x1="100" y1="142" x2="100" y2="240" stroke="rgba(255,255,255,0.25)" strokeWidth="2" strokeDasharray="4 2" />
-                <path d="M85 148 L80 190" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" opacity="0.85" />
-                <path d="M115 148 L120 190" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" opacity="0.85" />
+                <line x1="100" y1="142" x2="100" y2="240" stroke="rgba(224,215,245,0.25)" strokeWidth="2" strokeDasharray="4 2" />
+                <path d="M85 148 L80 190" stroke="#f4b8e4" strokeWidth="2" strokeLinecap="round" opacity="0.85" />
+                <path d="M115 148 L120 190" stroke="#c4a7e7" strokeWidth="2" strokeLinecap="round" opacity="0.85" />
 
                 {/* Stylized Outer Hood / Cowl */}
                 <path
                   d="M50 135 C42 95 60 45 100 45 C140 45 158 95 150 135 C142 165 125 175 100 175 C75 175 58 165 50 135 Z"
                   fill="url(#cowlGrad)"
-                  stroke="rgba(245,158,11,0.4)"
+                  stroke="rgba(196,167,231,0.4)"
                   strokeWidth="2"
                 />
 
                 {/* Deep Inner Hood Shadow & Silhouette Face Void */}
-                <ellipse cx="100" cy="115" rx="36" ry="44" fill="#181a1d" />
+                <ellipse cx="100" cy="115" rx="36" ry="44" fill="#141120" />
 
-                {/* Futuristic Cyber-Visor / Optical Display (Reflective & Interactive) */}
+                {/* Futuristic Cyber-Visor / Optical Display (Reflective & Interactive with Pastel Gradient) */}
                 <g filter="url(#glow)">
                   <rect
                     x="68"
@@ -190,21 +190,21 @@ export default function AvatarArt({ className = "" }: AvatarInteractiveProps) {
                     height="18"
                     rx="6"
                     fill="url(#visorGrad)"
-                    stroke="#f59e0b"
+                    stroke="#c4a7e7"
                     strokeWidth="1"
                   />
                   {/* Visor internal telemetry readout ticks */}
-                  <line x1="74" y1="111" x2="88" y2="111" stroke="#1e2024" strokeWidth="2" strokeLinecap="round" />
-                  <circle cx="100" cy="111" r="2" fill="#1e2024" />
-                  <line x1="112" y1="111" x2="126" y2="111" stroke="#1e2024" strokeWidth="2" strokeLinecap="round" />
+                  <line x1="74" y1="111" x2="88" y2="111" stroke="#181524" strokeWidth="2" strokeLinecap="round" />
+                  <circle cx="100" cy="111" r="2" fill="#181524" />
+                  <line x1="112" y1="111" x2="126" y2="111" stroke="#181524" strokeWidth="2" strokeLinecap="round" />
                 </g>
 
                 {/* High-tech audio earpiece module on hood edge */}
-                <rect x="44" y="105" width="8" height="18" rx="3" fill="#2d3035" stroke="#f59e0b" strokeWidth="1" />
-                <circle cx="48" cy="114" r="2" fill="#f59e0b" />
+                <rect x="44" y="105" width="8" height="18" rx="3" fill="#242036" stroke="#c4a7e7" strokeWidth="1" />
+                <circle cx="48" cy="114" r="2" fill="#f4b8e4" />
 
-                <rect x="148" y="105" width="8" height="18" rx="3" fill="#2d3035" stroke="#f59e0b" strokeWidth="1" />
-                <circle cx="152" cy="114" r="2" fill="#f59e0b" />
+                <rect x="148" y="105" width="8" height="18" rx="3" fill="#242036" stroke="#c4a7e7" strokeWidth="1" />
+                <circle cx="152" cy="114" r="2" fill="#8caaee" />
               </svg>
             </motion.div>
           </div>

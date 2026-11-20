@@ -10,9 +10,9 @@ export const DURATION = {
 };
 
 export const SCENE_COLORS = {
-  node: "#ffffff",
-  nodeActive: "#f59e0b",
-  edge: "rgba(255, 255, 255, 0.12)",
-  edgeActive: "#f59e0b",
-  packet: "#f59e0b",
+  node: "#fbf9fe",
+  nodeActive: "#c4a7e7",
+  edge: "rgba(224, 215, 245, 0.14)",
+  edgeActive: "#c4a7e7",
+  packet: "#f4b8e4",
 };

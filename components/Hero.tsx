@@ -68,7 +68,7 @@ export default function Hero() {
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
                 </span>
                 <span className="font-mono text-xs text-ivory font-medium">
-                  PROLOGUE // CONCEPT ART &amp; TECH 2026
+                  PROLOGUE // CONCEPT ART &amp; INTELLIGENCE
                 </span>
               </div>
 
@@ -116,7 +116,7 @@ export default function Hero() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => scrollTo("projects")}
-                  className="group flex items-center gap-2.5 rounded-lg bg-accent px-6 py-3.5 font-mono text-xs font-bold uppercase tracking-wider text-[#1e2024] transition-all hover:bg-accent-hover shadow-[0_4px_24px_rgba(245,158,11,0.25)]"
+                  className="group flex items-center gap-2.5 rounded-lg bg-accent px-6 py-3.5 font-mono text-xs font-bold uppercase tracking-wider text-[#181524] transition-all hover:bg-accent-hover shadow-[0_4px_24px_rgba(196,167,231,0.3)]"
                 >
                   <span>Explore Installations</span>
                   <ArrowDown size={14} className="transition-transform group-hover:translate-y-0.5" />

@@ -11,7 +11,7 @@
 }
 
 html {
-  background: #282a2e;
+  background: #181524;
   scroll-behavior: smooth;
 }
 
@@ -20,31 +20,31 @@ body {
   overflow-x: hidden;
 }
 
-/* Focused elements with subtle warm amber highlight */
+/* Focused elements with subtle lavender glow */
 :focus-visible {
-  outline: 1px solid #f59e0b;
+  outline: 1px solid #c4a7e7;
   outline-offset: 3px;
   border-radius: 2px;
 }
 
 ::selection {
-  background: rgba(245, 158, 11, 0.32);
+  background: rgba(196, 167, 231, 0.35);
   color: #ffffff;
 }
 
-/* Discreet gallery scrollbar */
+/* Discreet gallery scrollbar with lavender tint */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #282a2e;
+  background: #181524;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(196, 167, 231, 0.22);
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.28);
+  background: rgba(196, 167, 231, 0.4);
 }
 
 /* Velvety fine-art texture overlay */

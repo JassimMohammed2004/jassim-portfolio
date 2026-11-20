@@ -73,10 +73,10 @@ export default function Cursor() {
 
   return (
     <>
-      {/* Precision olive/ivory center dot */}
+      {/* Precision lavender center dot */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none fixed top-0 left-0 z-50 h-1.5 w-1.5 rounded-full bg-olive"
+        className="pointer-events-none fixed top-0 left-0 z-50 h-1.5 w-1.5 rounded-full bg-accent"
         style={{
           x: mouseX,
           y: mouseY,
@@ -90,10 +90,10 @@ export default function Cursor() {
         transition={{ duration: 0.15 }}
       />
 
-      {/* Trailing architectural halo */}
+      {/* Trailing atmospheric halo with lavender tint */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none fixed top-0 left-0 z-50 rounded-full border border-olive/50"
+        className="pointer-events-none fixed top-0 left-0 z-50 rounded-full border border-accent/40"
         style={{
           x: ringX,
           y: ringY,
@@ -105,16 +105,16 @@ export default function Cursor() {
           height: cursorType === "pointer" ? 36 : cursorType === "card" ? 52 : 26,
           backgroundColor:
             cursorType === "pointer"
-              ? "rgba(157, 179, 138, 0.12)"
+              ? "rgba(196, 167, 231, 0.14)"
               : cursorType === "card"
-              ? "rgba(157, 179, 138, 0.06)"
+              ? "rgba(196, 167, 231, 0.08)"
               : "transparent",
           borderColor:
             cursorType === "pointer"
-              ? "rgba(157, 179, 138, 0.85)"
+              ? "rgba(214, 190, 255, 0.85)"
               : cursorType === "card"
-              ? "rgba(157, 179, 138, 0.45)"
-              : "rgba(243, 240, 232, 0.2)",
+              ? "rgba(196, 167, 231, 0.5)"
+              : "rgba(224, 215, 245, 0.25)",
         }}
         transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
       />
