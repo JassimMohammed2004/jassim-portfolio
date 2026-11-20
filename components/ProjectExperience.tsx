@@ -47,9 +47,9 @@ export default function ProjectExperience() {
               </motion.span>
 
               <motion.div
-                whileHover={{ y: -3, borderColor: "rgba(157, 179, 138, 0.45)" }}
+                whileHover={{ y: -3, borderColor: "rgba(245, 158, 11, 0.45)" }}
                 transition={{ duration: 0.2 }}
-                className="rounded-[32px] border border-line-strong bg-gradient-to-b from-[#14161f] via-[#0d0f15] to-void p-7 md:p-10 transition-colors shadow-[0_20px_50px_rgba(0,0,0,0.65)]"
+                className="rounded-[28px] border border-line-strong bg-gradient-to-b from-surface via-[#2d3034] to-void p-7 md:p-10 transition-colors shadow-[0_16px_40px_rgba(0,0,0,0.5)]"
               >
                 <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-line pb-4">
                   <div className="flex items-center gap-2.5">

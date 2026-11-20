@@ -49,7 +49,7 @@ export default function About() {
           <motion.div
             whileHover={{ y: -2 }}
             transition={{ duration: 0.3 }}
-            className="flex h-full flex-col justify-between rounded-[36px] border border-line-strong bg-gradient-to-b from-[#151720] via-[#0d0f15] to-void p-8 md:p-12 shadow-[0_24px_60px_rgba(0,0,0,0.7)]"
+            className="flex h-full flex-col justify-between rounded-[32px] border border-line-strong bg-gradient-to-b from-surface via-[#2d3034] to-void p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
           >
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 rounded-full border border-olive/30 bg-olive-soft px-3.5 py-1 font-mono text-xs text-olive font-medium">
@@ -104,7 +104,7 @@ export default function About() {
               <motion.div
                 key={area.title}
                 variants={cardItem}
-                whileHover={{ x: 4, borderColor: "rgba(157, 179, 138, 0.4)" }}
+                whileHover={{ x: 4, borderColor: "rgba(245, 158, 11, 0.4)" }}
                 transition={{ duration: 0.25 }}
                 className="group rounded-2xl border border-line bg-surface/75 p-6 transition-colors hover:bg-surface-elevated"
               >

@@ -27,9 +27,9 @@ export default function Certifications() {
           <motion.div
             key={c.title}
             variants={cardItem}
-            whileHover={{ y: -3, borderColor: "rgba(157, 179, 138, 0.45)" }}
+            whileHover={{ y: -3, borderColor: "rgba(245, 158, 11, 0.45)" }}
             transition={{ duration: 0.2 }}
-            className="flex items-start gap-5 rounded-[32px] border border-line-strong bg-gradient-to-b from-[#141620] via-[#0d0f15] to-void p-7 md:p-9 transition-colors shadow-[0_20px_50px_rgba(0,0,0,0.65)]"
+            className="flex items-start gap-5 rounded-[28px] border border-line-strong bg-gradient-to-b from-surface via-[#2d3034] to-void p-7 md:p-9 transition-colors shadow-[0_16px_40px_rgba(0,0,0,0.5)]"
           >
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-line bg-surface-elevated text-olive transition-transform duration-200 group-hover:scale-105">
               <Award size={24} strokeWidth={1.8} />
@@ -50,8 +50,8 @@ export default function Certifications() {
       {languages.length > 0 && (
         <Reveal delay={0.2} className="mt-8">
           <motion.div
-            whileHover={{ borderColor: "rgba(157, 179, 138, 0.35)" }}
-            className="flex flex-wrap items-center gap-3 rounded-[28px] border border-line-strong bg-gradient-to-b from-[#12141c] to-void p-7 md:p-8 transition-colors shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
+            whileHover={{ borderColor: "rgba(245, 158, 11, 0.35)" }}
+            className="flex flex-wrap items-center gap-3 rounded-[28px] border border-line-strong bg-gradient-to-b from-surface to-void p-7 md:p-8 transition-colors shadow-[0_16px_40px_rgba(0,0,0,0.5)]"
           >
             <div className="flex items-center gap-2 text-muted mr-3 font-mono text-xs uppercase tracking-wider">
               <Globe size={16} className="text-olive" />
@@ -60,7 +60,7 @@ export default function Certifications() {
             {languages.map((l) => (
               <motion.span
                 key={l}
-                whileHover={{ scale: 1.05, borderColor: "rgba(157, 179, 138, 0.6)" }}
+                whileHover={{ scale: 1.05, borderColor: "rgba(245, 158, 11, 0.6)" }}
                 className="rounded-full border border-line bg-surface-elevated px-4 py-1.5 font-mono text-xs text-ivory transition-colors"
               >
                 {l}

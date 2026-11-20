@@ -27,9 +27,9 @@ export default function Research() {
           <motion.div
             key={r.title}
             variants={cardItem}
-            whileHover={{ y: -4, borderColor: "rgba(157, 179, 138, 0.45)" }}
+            whileHover={{ y: -4, borderColor: "rgba(245, 158, 11, 0.45)" }}
             transition={{ duration: 0.2 }}
-            className="flex h-full flex-col justify-between rounded-[32px] border border-line-strong bg-gradient-to-b from-[#141620] via-[#0d0f15] to-void p-8 md:p-10 transition-colors shadow-[0_20px_50px_rgba(0,0,0,0.7)]"
+            className="flex h-full flex-col justify-between rounded-[28px] border border-line-strong bg-gradient-to-b from-surface via-[#2d3034] to-void p-8 md:p-10 transition-colors shadow-[0_16px_40px_rgba(0,0,0,0.5)]"
           >
             <div>
               <div className="flex items-center justify-between">
@@ -62,8 +62,8 @@ export default function Research() {
       {seminars.length > 0 && (
         <Reveal delay={0.16} className="mt-8">
           <motion.div
-            whileHover={{ borderColor: "rgba(157, 179, 138, 0.35)" }}
-            className="rounded-[32px] border border-line-strong bg-gradient-to-b from-[#12141c] to-void p-7 md:p-10 transition-colors shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
+            whileHover={{ borderColor: "rgba(245, 158, 11, 0.35)" }}
+            className="rounded-[28px] border border-line-strong bg-gradient-to-b from-surface to-void p-7 md:p-10 transition-colors shadow-[0_16px_40px_rgba(0,0,0,0.5)]"
           >
             <div className="flex items-center gap-2 text-muted mb-4 font-mono text-xs uppercase tracking-wider">
               <Presentation size={17} className="text-olive" />

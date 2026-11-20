@@ -43,10 +43,10 @@ export default function Hero() {
     >
       <Scene />
 
-      {/* Atmospheric Editorial Watermark / Background Title */}
-      <div className="pointer-events-none absolute left-6 right-6 top-24 select-none overflow-hidden opacity-[0.035] md:left-12 md:top-20">
+      {/* Atmospheric Concept Art Folio Title Watermark */}
+      <div className="pointer-events-none absolute left-6 right-6 top-24 select-none overflow-hidden opacity-[0.04] md:left-12 md:top-20">
         <span className="block font-display text-[22vw] font-black tracking-tightest text-ivory leading-none">
-          INTELLIGENCE
+          PORTFOLIO
         </span>
       </div>
 
@@ -62,32 +62,32 @@ export default function Hero() {
           >
             {/* Prologue Badge & Verification */}
             <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-3">
-              <div className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-surface/90 px-4 py-1.5 backdrop-blur-md">
+              <div className="inline-flex items-center gap-2 rounded-md border border-line-strong bg-surface/90 px-4 py-1.5 backdrop-blur-md">
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-olive opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-olive" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
                 </span>
                 <span className="font-mono text-xs text-ivory font-medium">
-                  PROLOGUE // PORTFOLIO 2026
+                  PROLOGUE // CONCEPT ART &amp; TECH 2026
                 </span>
               </div>
 
-              <div className="inline-flex items-center gap-1.5 rounded-full border border-olive/30 bg-olive-soft px-3.5 py-1 font-mono text-xs text-olive backdrop-blur-sm">
+              <div className="inline-flex items-center gap-1.5 rounded-md border border-accent/30 bg-accent-soft px-3.5 py-1 font-mono text-xs text-accent backdrop-blur-sm">
                 <ShieldCheck size={13} />
                 <span>B.Tech AI &amp; DS — Graduated</span>
               </div>
             </motion.div>
 
-            {/* Oversized Cinematic Typography Name */}
+            {/* Oversized Concept Art Typography Name */}
             <motion.div variants={itemVariants} className="space-y-3">
               <div className="flex items-center gap-3">
                 <motion.span
                   initial={{ width: 0 }}
                   animate={{ width: 48 }}
                   transition={{ duration: 0.8, delay: 0.25, ease: EASE.standard }}
-                  className="h-[2px] bg-olive"
+                  className="h-[2px] bg-accent"
                 />
-                <p className="font-mono text-xs font-semibold uppercase tracking-widest2 text-olive">
+                <p className="font-mono text-xs font-semibold uppercase tracking-widest2 text-accent">
                   {profile.role}
                 </p>
               </div>
@@ -106,7 +106,7 @@ export default function Hero() {
               {profile.tagline}
             </motion.p>
 
-            {/* Action CTAs with magnetic physics */}
+            {/* Action CTAs with warm golden amber styling */}
             <motion.div
               variants={itemVariants}
               className="flex flex-wrap items-center gap-4 pt-2"
@@ -116,7 +116,7 @@ export default function Hero() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => scrollTo("projects")}
-                  className="group flex items-center gap-2.5 rounded-xl bg-ivory px-6 py-3.5 font-mono text-xs font-semibold uppercase tracking-wider text-void transition-all hover:bg-accent shadow-[0_4px_24px_rgba(243,240,232,0.18)]"
+                  className="group flex items-center gap-2.5 rounded-lg bg-accent px-6 py-3.5 font-mono text-xs font-bold uppercase tracking-wider text-[#1e2024] transition-all hover:bg-accent-hover shadow-[0_4px_24px_rgba(245,158,11,0.25)]"
                 >
                   <span>Explore Installations</span>
                   <ArrowDown size={14} className="transition-transform group-hover:translate-y-0.5" />
@@ -128,9 +128,9 @@ export default function Hero() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => scrollTo("contact")}
-                  className="group flex items-center gap-2 rounded-xl border border-line-strong bg-surface px-6 py-3.5 font-mono text-xs font-semibold uppercase tracking-wider text-ivory transition-all hover:border-olive hover:bg-surface-elevated"
+                  className="group flex items-center gap-2 rounded-lg border border-line-strong bg-surface px-6 py-3.5 font-mono text-xs font-semibold uppercase tracking-wider text-ivory transition-all hover:border-accent hover:bg-surface-elevated"
                 >
-                  <Mail size={14} className="text-olive" />
+                  <Mail size={14} className="text-accent" />
                   <span>Direct Dialogue</span>
                 </motion.button>
               </Magnetic>
@@ -142,7 +142,7 @@ export default function Hero() {
                   href={profile.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 rounded-xl border border-line bg-surface/60 px-5 py-3.5 font-mono text-xs font-medium uppercase tracking-wider text-muted transition-all hover:border-line-strong hover:text-ivory"
+                  className="flex items-center gap-2 rounded-lg border border-line bg-surface/60 px-5 py-3.5 font-mono text-xs font-medium uppercase tracking-wider text-muted transition-all hover:border-line-strong hover:text-ivory"
                 >
                   <Github size={15} />
                   <span>GitHub</span>
@@ -164,7 +164,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Editorial Bottom Meta Strip with subtle scroll cue */}
+      {/* Concept Art Bottom Meta Strip */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -173,7 +173,7 @@ export default function Hero() {
       >
         <div className="flex flex-wrap items-center justify-between gap-4 font-mono text-[11px] uppercase tracking-wider text-faint">
           <div className="flex items-center gap-2">
-            <Compass size={13} className="text-olive" />
+            <Compass size={13} className="text-accent" />
             <span>Kottayam, Kerala, India — Autonomous Systems &amp; Neural Software</span>
           </div>
           <button
@@ -181,7 +181,7 @@ export default function Hero() {
             className="group flex items-center gap-2 text-muted hover:text-ivory transition-colors cursor-pointer"
           >
             <span>Scroll to Enter Chapter 01</span>
-            <ArrowDown size={12} className="animate-bounce text-olive" />
+            <ArrowDown size={12} className="animate-bounce text-accent" />
           </button>
         </div>
       </motion.div>

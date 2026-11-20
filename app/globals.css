@@ -11,7 +11,7 @@
 }
 
 html {
-  background: #0a0b0d;
+  background: #282a2e;
   scroll-behavior: smooth;
 }
 
@@ -20,40 +20,40 @@ body {
   overflow-x: hidden;
 }
 
-/* Focused elements with subtle olive highlight */
+/* Focused elements with subtle warm amber highlight */
 :focus-visible {
-  outline: 1px solid #9db38a;
+  outline: 1px solid #f59e0b;
   outline-offset: 3px;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 ::selection {
-  background: rgba(157, 179, 138, 0.28);
-  color: #f3f0e8;
+  background: rgba(245, 158, 11, 0.32);
+  color: #ffffff;
 }
 
-/* Discreet dark scrollbar */
+/* Discreet gallery scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0b0d;
+  background: #282a2e;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(243, 240, 232, 0.12);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(243, 240, 232, 0.22);
+  background: rgba(255, 255, 255, 0.28);
 }
 
-/* Film grain overlay */
+/* Velvety fine-art texture overlay */
 .grain-overlay {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 50;
-  opacity: 0.022;
+  opacity: 0.024;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -75,5 +75,5 @@ body {
 }
 
 .section-label {
-  @apply font-mono text-[11px] tracking-widest2 uppercase text-olive font-medium;
+  @apply font-mono text-[11px] tracking-widest2 uppercase text-accent font-semibold;
 }

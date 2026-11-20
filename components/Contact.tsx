@@ -31,7 +31,7 @@ export default function Contact() {
           <motion.div
             whileHover={{ y: -2 }}
             transition={{ duration: 0.25 }}
-            className="flex h-full flex-col justify-between rounded-[36px] border border-line-strong bg-gradient-to-b from-[#161822] via-[#0d0f16] to-void p-8 md:p-12 shadow-[0_28px_70px_rgba(0,0,0,0.7)]"
+            className="flex h-full flex-col justify-between rounded-[32px] border border-line-strong bg-gradient-to-b from-surface via-[#2d3034] to-void p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
           >
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-olive/30 bg-olive-soft px-4 py-1 font-mono text-xs text-olive font-semibold">
@@ -97,12 +97,12 @@ export default function Contact() {
             {/* GitHub */}
             <Magnetic strength={0.15} className="w-full">
               <motion.a
-                whileHover={{ x: 4, borderColor: "rgba(157, 179, 138, 0.45)" }}
+                whileHover={{ x: 4, borderColor: "rgba(245, 158, 11, 0.45)" }}
                 whileTap={{ scale: 0.99 }}
                 href={profile.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-between rounded-[28px] border border-line-strong bg-gradient-to-b from-[#141620] via-[#0d0f15] to-void p-6 transition-colors hover:bg-surface-elevated shadow-[0_16px_40px_rgba(0,0,0,0.6)]"
+                className="group flex items-center justify-between rounded-[24px] border border-line-strong bg-gradient-to-b from-surface via-[#2d3034] to-void p-6 transition-colors hover:bg-surface-elevated shadow-[0_16px_40px_rgba(0,0,0,0.5)]"
               >
                 <div className="flex items-center gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-line bg-surface-elevated text-ivory transition-colors group-hover:text-olive">
@@ -122,12 +122,12 @@ export default function Contact() {
             {/* LinkedIn */}
             <Magnetic strength={0.15} className="w-full">
               <motion.a
-                whileHover={{ x: 4, borderColor: "rgba(157, 179, 138, 0.45)" }}
+                whileHover={{ x: 4, borderColor: "rgba(245, 158, 11, 0.45)" }}
                 whileTap={{ scale: 0.99 }}
                 href={profile.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-between rounded-[28px] border border-line-strong bg-gradient-to-b from-[#141620] via-[#0d0f15] to-void p-6 transition-colors hover:bg-surface-elevated shadow-[0_16px_40px_rgba(0,0,0,0.6)]"
+                className="group flex items-center justify-between rounded-[24px] border border-line-strong bg-gradient-to-b from-surface via-[#2d3034] to-void p-6 transition-colors hover:bg-surface-elevated shadow-[0_16px_40px_rgba(0,0,0,0.5)]"
               >
                 <div className="flex items-center gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-line bg-surface-elevated text-ivory transition-colors group-hover:text-olive">
@@ -147,10 +147,10 @@ export default function Contact() {
             {/* Telephone */}
             <Magnetic strength={0.15} className="w-full">
               <motion.a
-                whileHover={{ x: 4, borderColor: "rgba(157, 179, 138, 0.45)" }}
+                whileHover={{ x: 4, borderColor: "rgba(245, 158, 11, 0.45)" }}
                 whileTap={{ scale: 0.99 }}
                 href={`tel:${profile.phone.replace(/\s/g, "")}`}
-                className="group flex items-center justify-between rounded-[28px] border border-line-strong bg-gradient-to-b from-[#141620] via-[#0d0f15] to-void p-6 transition-colors hover:bg-surface-elevated shadow-[0_16px_40px_rgba(0,0,0,0.6)]"
+                className="group flex items-center justify-between rounded-[24px] border border-line-strong bg-gradient-to-b from-surface via-[#2d3034] to-void p-6 transition-colors hover:bg-surface-elevated shadow-[0_16px_40px_rgba(0,0,0,0.5)]"
               >
                 <div className="flex items-center gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-line bg-surface-elevated text-ivory transition-colors group-hover:text-olive">
@@ -168,7 +168,7 @@ export default function Contact() {
             </Magnetic>
 
             {/* Location */}
-            <div className="flex items-center gap-4 rounded-[28px] border border-line-strong bg-gradient-to-b from-[#141620] via-[#0d0f15] to-void p-6 shadow-[0_16px_40px_rgba(0,0,0,0.6)]">
+            <div className="flex items-center gap-4 rounded-[24px] border border-line-strong bg-gradient-to-b from-surface via-[#2d3034] to-void p-6 shadow-[0_16px_40px_rgba(0,0,0,0.5)]">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-line bg-surface-elevated text-olive">
                 <MapPin size={22} />
               </div>

@@ -4,10 +4,12 @@ import { useEffect, useRef } from "react";
 import { prefersReducedMotion } from "@/lib/utils";
 
 /**
- * Cinematic Studio Atmosphere Canvas.
- * Generates slow, sweeping architectural light curtains, subtle atmospheric depth,
- * and high-definition particle illumination in warm ivory and muted olive tones.
- * Provides rich visual depth and subtle parallax reaction without distracting from content.
+ * Concept Art Folio Atmosphere Canvas.
+ * Generates slow, chiaroscuro lighting blooms inspired by the Behance concept art reference:
+ * - Deep neutral slate background (#282a2e)
+ * - Warm golden amber focal point glows (#f59e0b)
+ * - Subtle sci-fi cyan edge rim glows (#00e5ff)
+ * - Velvety atmospheric dispersion without distracting from artwork and typography
  */
 export default function Scene() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -47,31 +49,31 @@ export default function Scene() {
       canvas.height = height * dpr;
       ctx?.scale(dpr, dpr);
 
-      // Create atmospheric ambient light blooms
+      // Concept Art chiaroscuro lighting orbs
       orbs = [
         {
           x: width * 0.25,
-          y: height * 0.3,
+          y: height * 0.35,
           radius: Math.min(width, height) * 0.45,
-          color: "rgba(157, 179, 138, 0.07)", // Olive aura
-          vx: 0.12,
+          color: "rgba(245, 158, 11, 0.07)", // Warm golden amber glow
+          vx: 0.1,
           vy: 0.08,
         },
         {
-          x: width * 0.75,
-          y: height * 0.5,
+          x: width * 0.78,
+          y: height * 0.45,
           radius: Math.min(width, height) * 0.5,
-          color: "rgba(204, 232, 133, 0.05)", // Muted chartreuse silk
-          vx: -0.1,
-          vy: 0.1,
+          color: "rgba(0, 229, 255, 0.04)", // Sci-fi cyan rim glow
+          vx: -0.09,
+          vy: 0.09,
         },
         {
           x: width * 0.5,
-          y: height * 0.8,
+          y: height * 0.82,
           radius: Math.min(width, height) * 0.4,
-          color: "rgba(223, 155, 86, 0.04)", // Warm amber horizon
+          color: "rgba(245, 158, 11, 0.05)", // Warm lantern horizon
           vx: 0.08,
-          vy: -0.09,
+          vy: -0.08,
         },
       ];
     }
@@ -102,10 +104,10 @@ export default function Scene() {
       mouse.x += (mouse.targetX - mouse.x) * 0.04;
       mouse.y += (mouse.targetY - mouse.y) * 0.04;
 
-      // Render floating cinematic ambient light orbs
+      // Render floating concept art chiaroscuro light blooms
       for (const orb of orbs) {
-        orb.x += orb.vx + Math.sin(t) * 0.2;
-        orb.y += orb.vy + Math.cos(t * 0.8) * 0.2;
+        orb.x += orb.vx + Math.sin(t) * 0.18;
+        orb.y += orb.vy + Math.cos(t * 0.8) * 0.18;
 
         if (orb.x < -orb.radius) orb.x = width + orb.radius;
         if (orb.x > width + orb.radius) orb.x = -orb.radius;
@@ -129,7 +131,7 @@ export default function Scene() {
         ctx!.fill();
       }
 
-      // Cursor spotlight interaction
+      // Cursor subtle ambient highlight
       if (mouse.x > 0 && mouse.y > 0) {
         const spot = ctx!.createRadialGradient(
           mouse.x,
@@ -137,9 +139,9 @@ export default function Scene() {
           0,
           mouse.x,
           mouse.y,
-          width < 768 ? 220 : 380
+          width < 768 ? 200 : 360
         );
-        spot.addColorStop(0, "rgba(204, 232, 133, 0.04)");
+        spot.addColorStop(0, "rgba(245, 158, 11, 0.035)");
         spot.addColorStop(1, "transparent");
         ctx!.fillStyle = spot;
         ctx!.fillRect(0, 0, width, height);
@@ -161,14 +163,14 @@ export default function Scene() {
   return (
     <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
       <canvas ref={canvasRef} className="h-full w-full" />
-      {/* Studio lighting top/bottom vignette */}
-      <div className="absolute inset-0 bg-gradient-to-b from-void via-transparent to-void opacity-80" />
-      {/* Subtle atmospheric architectural scan lines */}
+      {/* Matte-board dark slate vignette */}
+      <div className="absolute inset-0 bg-gradient-to-b from-void/90 via-transparent to-void/95 opacity-85" />
+      {/* Fine-art studio paper grain */}
       <div
-        className="absolute inset-0 opacity-[0.035] mix-blend-overlay"
+        className="absolute inset-0 opacity-[0.03] mix-blend-overlay"
         style={{
-          backgroundImage: `linear-gradient(rgba(243, 240, 232, 0.4) 1px, transparent 1px)`,
-          backgroundSize: "100% 4px",
+          backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 1px)`,
+          backgroundSize: "24px 24px",
         }}
       />
     </div>
