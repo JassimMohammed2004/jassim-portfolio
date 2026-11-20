@@ -5,6 +5,7 @@ export interface ProjectItem {
   id: string;
   title: string;
   subtitle: string;
+  chapter: string;
   category: string;
   description: string;
   tags: string[];
@@ -18,13 +19,13 @@ export const profile = {
   name: "Jassim Mohammed",
   firstName: "Jassim",
   lastName: "Mohammed",
-  role: "AI & Machine Learning Engineer | Software Developer",
-  shortRole: "AI/ML Engineer",
+  role: "AI ENGINEER // DEVELOPER // CREATIVE TECHNOLOGIST",
+  shortRole: "AI Engineer & Developer",
   tagline:
-    "Building intelligent systems through AI, machine learning, and software engineering.",
+    "Engineering intelligent systems at the intersection of machine learning, resilient software architectures, and cinematic digital experiences.",
   bio: [
-    "I am an Artificial Intelligence & Data Science graduate engineer with a deep passion for designing practical machine learning solutions and scalable intelligent software.",
-    "Having completed my B.Tech in Artificial Intelligence and Data Science, I bridge mathematical theory with production-grade code: training statistical classifiers, integrating foundation models, constructing reliable data pipelines, and architecting performant full-stack systems.",
+    "I am an Artificial Intelligence & Data Science graduate engineer driven by building practical machine learning solutions and scalable intelligent software.",
+    "Having completed my B.Tech in Artificial Intelligence and Data Science, I bridge deep theoretical models with production-grade engineering: training predictive classifiers, integrating conversational AI pipelines, architecting performant microservices, and crafting interactive digital systems.",
   ],
   educationSummary: "B.Tech in Artificial Intelligence & Data Science (Completed / Graduated)",
   location: "Kottayam, Kerala, India",
@@ -34,6 +35,18 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/jassim-mohammed",
   availableForWork: true,
 };
+
+export const chapters = [
+  { id: "home", num: "00", name: "Prologue", label: "Identity" },
+  { id: "about", num: "01", name: "Genesis", label: "Mindset & Core" },
+  { id: "skills", num: "02", name: "Armory", label: "Intelligence Stack" },
+  { id: "projects", num: "03", name: "Installations", label: "Selected Works" },
+  { id: "experience", num: "04", name: "Odyssey", label: "Field Journey" },
+  { id: "education", num: "05", name: "Academy", label: "Academic Pedigree" },
+  { id: "research", num: "06", name: "Inquiry", label: "Research Lab" },
+  { id: "credentials", num: "07", name: "Validation", label: "Certifications" },
+  { id: "contact", num: "08", name: "Epilogue", label: "Direct Dialogue" },
+];
 
 export const skillCategories = [
   {
@@ -70,10 +83,11 @@ export const projects: ProjectItem[] = [
   {
     id: "nids-ml",
     title: "Network Intrusion Detection System",
-    subtitle: "Autonomous ML Defense & Telemetry Classification",
-    category: "Machine Learning & Network Security",
+    subtitle: "Autonomous ML Defense & Streaming Telemetry Classification",
+    chapter: "ACT I // DEFENSIVE TELEMETRY",
+    category: "Machine Learning & Cybersecurity",
     description:
-      "A high-precision machine learning system engineered to inspect streaming network packet features, isolate anomalous behavioral signatures, and autonomously classify hostile network intrusions in real time.",
+      "A high-precision machine learning security architecture engineered to inspect streaming network packet features, isolate anomalous behavioral signatures, and autonomously classify hostile network intrusions in real time.",
     tags: ["Python", "Machine Learning", "Scikit-learn", "Data Analysis", "Security"],
     githubUrl: null, // Staging placeholder
     liveUrl: null,
@@ -82,12 +96,13 @@ export const projects: ProjectItem[] = [
       "Multi-class anomaly classifier benchmarking malicious attack patterns",
       "Robust statistical evaluation against adversarial network flows",
     ],
-    accentColor: "#C5F82A",
+    accentColor: "#ef4444", // Deep red & amber cybersecurity accent
   },
   {
     id: "alexa-voice-assistant",
     title: "Alexa AI Voice Assistant",
     subtitle: "Conversational Acoustic Pipeline & Task Automation",
+    chapter: "ACT II // ACOUSTIC INTELLIGENCE",
     category: "AI & Natural Language Systems",
     description:
       "A personal AI voice assistant application integrating continuous speech recognition, lexical intent parsing, and automated response synthesis for hands-free workflow automation and machine control.",
@@ -99,12 +114,13 @@ export const projects: ProjectItem[] = [
       "Intent mapping & multi-threaded task automation execution",
       "Context-aware voice feedback with low-latency audio synthesis",
     ],
-    accentColor: "#38bdf8",
+    accentColor: "#df9b56", // Warm amber acoustic wave accent
   },
   {
     id: "collabify-ai",
     title: "Collabify AI",
     subtitle: "Distributed Collaboration & Workspace Intelligence",
+    chapter: "ACT III // COLLABORATIVE SYNTHESIS",
     category: "Intelligent Collaboration Platform",
     description:
       "An AI-augmented collaboration architecture conceived to empower distributed engineering teams, synthesize multi-document knowledge streams, and streamline technical communication via modular microservices.",
@@ -116,7 +132,7 @@ export const projects: ProjectItem[] = [
       "Modular microservice integration built upon high-throughput FastAPI endpoints",
       "Synchronous state synchronization across collaborative team canvases",
     ],
-    accentColor: "#a78bfa",
+    accentColor: "#cce885", // Chartreuse silk collaboration accent
   },
 ];
 
@@ -200,11 +216,11 @@ export const certifications = [
 export const languages = ["English", "Malayalam", "Tamil"];
 
 export const navSections = [
-  { id: "about", label: "About" },
-  { id: "skills", label: "Skills" },
-  { id: "projects", label: "Projects" },
-  { id: "experience", label: "Experience" },
-  { id: "education", label: "Education" },
-  { id: "research", label: "Research" },
-  { id: "contact", label: "Contact" },
+  { id: "about", label: "Genesis" },
+  { id: "skills", label: "Armory" },
+  { id: "projects", label: "Works" },
+  { id: "experience", label: "Odyssey" },
+  { id: "education", label: "Academy" },
+  { id: "research", label: "Inquiry" },
+  { id: "contact", label: "Epilogue" },
 ];

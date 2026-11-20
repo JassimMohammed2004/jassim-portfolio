@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Github, ExternalLink, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight, Github, ExternalLink, CheckCircle2, Terminal } from "lucide-react";
 import Section from "./ui/Section";
 import Magnetic from "./ui/Magnetic";
 import ProjectArtwork from "./ui/ProjectArtwork";
@@ -15,7 +15,7 @@ function CinematicProjectStage({ project, index }: { project: ProjectItem; index
     <motion.article
       variants={cardItem}
       data-cursor="card"
-      className="project-card group relative overflow-hidden rounded-[36px] border border-line-strong bg-gradient-to-b from-[#14161d] via-[#0d0f14] to-void p-6 md:p-12 shadow-[0_24px_64px_rgba(0,0,0,0.85)] transition-all duration-300 hover:border-olive/40"
+      className="project-card group relative overflow-hidden rounded-[36px] border border-line-strong bg-gradient-to-b from-[#14161e] via-[#0c0e13] to-void p-6 md:p-12 shadow-[0_28px_70px_rgba(0,0,0,0.85)] transition-all duration-300 hover:border-line-strong"
     >
       <div className={`grid items-center gap-8 lg:grid-cols-12 lg:gap-14 ${isEven ? "" : "lg:[&>*:first-child]:order-2"}`}>
         {/* Visual Artwork Installation (7 cols) */}
@@ -32,13 +32,13 @@ function CinematicProjectStage({ project, index }: { project: ProjectItem; index
         {/* Text Editorial Details (5 cols) */}
         <div className="flex flex-col justify-between space-y-6 lg:col-span-5">
           <div>
-            {/* Index & Category tag */}
+            {/* Act / Chapter & Category tag */}
             <div className="flex items-center gap-3 font-mono text-xs">
               <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-line-strong bg-surface-elevated font-semibold text-olive">
                 0{index + 1}
               </span>
-              <span className="uppercase tracking-wider text-muted">
-                {project.category}
+              <span className="font-semibold tracking-wider text-olive uppercase">
+                {project.chapter}
               </span>
             </div>
 
@@ -139,9 +139,9 @@ export default function Projects() {
     <Section
       id="projects"
       index="03"
-      label="Curated Engineering"
+      label="CHAPTER 03 // INSTALLATIONS"
       title="Interactive Systems Showcase"
-      description="Three individually art-directed systems covering autonomous network security telemetry, conversational speech AI, and distributed knowledge synchronization."
+      description="Three distinct production-grade systems spanning cybersecurity network telemetry, acoustic conversational AI, and distributed knowledge synchronization."
     >
       <motion.div
         variants={staggerContainer(0.15, 0.05)}

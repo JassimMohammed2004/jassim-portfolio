@@ -1,71 +1,81 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ShieldAlert, Mic, Users, Activity, Layers, Cpu, Radio, Sparkles } from "lucide-react";
+import { ShieldAlert, Mic, Users, Activity, Layers, Cpu, Radio, Sparkles, Terminal, Volume2, ShieldCheck, Binary, Network } from "lucide-react";
 
 interface ProjectArtworkProps {
   id: string;
 }
 
 /**
- * High-End Studio Project Artwork Installations.
- * Bespoke artistic composition for each of the three systems:
- * 1. NIDS: Tactical radar telemetry sculpture with orbital packet sweeps & security vectors.
- * 2. Alexa Voice: Acoustic harmonic soundboard with pulsing gold/olive waveforms & frequency meters.
- * 3. Collabify AI: Distributed architectural node grid with floating microservice satellites.
+ * Immersive Cinematic Project Installations:
+ * 1. Network Intrusion Detection System:
+ *    - Deep dark cybersecurity telemetry with tactical grid, red & amber threat vectors,
+ *      pulsing perimeter nodes, streaming hex packet feeds, and classified status meters.
+ * 2. Alexa AI Voice Assistant:
+ *    - Acoustic voice interface with dynamic harmonic sound waves, animated frequency meters,
+ *      speech-to-text NLP intent nodes, and warm amber atmospheric glow.
+ * 3. Collabify AI:
+ *    - Distributed collaborative AI workspace with orbiting microservice satellites (FastAPI, LLM, Realtime Canvas),
+ *      chartreuse silk mesh nodes, and multi-tenant telemetry.
  */
 export default function ProjectArtwork({ id }: ProjectArtworkProps) {
   if (id === "nids-ml") {
     return (
-      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl border border-line-strong bg-gradient-to-br from-[#12151b] via-[#090a0d] to-void p-6 md:p-8">
-        {/* Subtle olive radar illumination */}
-        <div className="pointer-events-none absolute -inset-10 bg-[radial-gradient(circle_at_50%_50%,rgba(157,179,138,0.14),transparent_70%)]" />
+      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[32px] border border-red-500/25 bg-gradient-to-br from-[#1a0f12] via-[#0d0709] to-void p-6 md:p-9 shadow-[0_24px_50px_rgba(239,68,68,0.12)]">
+        {/* Subtle cybersecurity threat flare */}
+        <div className="pointer-events-none absolute -inset-10 bg-[radial-gradient(circle_at_50%_50%,rgba(239,68,68,0.15),transparent_70%)]" />
 
-        {/* Tactical architectural grid background */}
+        {/* Tactical cyber matrix grid */}
         <div
-          className="pointer-events-none absolute inset-0 opacity-[0.14]"
+          className="pointer-events-none absolute inset-0 opacity-[0.16]"
           style={{
-            backgroundImage: `linear-gradient(to right, rgba(243,240,232,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(243,240,232,0.12) 1px, transparent 1px)`,
-            backgroundSize: "32px 32px",
+            backgroundImage: `linear-gradient(to right, rgba(239,68,68,0.2) 1px, transparent 1px), linear-gradient(to bottom, rgba(239,68,68,0.2) 1px, transparent 1px)`,
+            backgroundSize: "28px 28px",
           }}
         />
 
         <div className="relative z-10 flex h-full flex-col justify-between">
-          <div className="flex items-center justify-between text-[11px] font-mono text-olive">
+          <div className="flex items-center justify-between text-[11px] font-mono text-red-400">
             <span className="flex items-center gap-2">
-              <ShieldAlert size={15} />
-              <span>TELEMETRY_PIPELINE.SEC</span>
+              <ShieldAlert size={15} className="animate-pulse" />
+              <span>DEFENSIVE_TELEMETRY // NIDS.ML</span>
             </span>
-            <span className="rounded-full border border-olive/30 bg-olive-soft px-2.5 py-0.5 text-[10px] text-ivory">
-              CLASSIFIER: ACTIVE
+            <span className="rounded-full border border-red-500/40 bg-red-500/10 px-3 py-0.5 text-[10px] text-red-200 font-semibold tracking-wider">
+              STREAM: INSPECTED
             </span>
           </div>
 
-          {/* Central Security Radar Vector Art */}
+          {/* Central Security Radar Vector Art with Red & Amber Threat Accents */}
           <div className="relative my-auto flex items-center justify-center py-4">
-            <div className="relative flex h-40 w-40 items-center justify-center">
+            <div className="relative flex h-44 w-44 items-center justify-center">
               {/* Concentric radar rings */}
-              <div className="absolute inset-0 rounded-full border border-olive/30 animate-ping opacity-25" />
-              <div className="absolute h-32 w-32 rounded-full border border-line-strong" />
-              <div className="absolute h-20 w-20 rounded-full border border-dashed border-olive/45" />
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-olive bg-surface-elevated text-olive shadow-[0_0_28px_rgba(157,179,138,0.35)]">
-                <Activity size={24} />
+              <div className="absolute inset-0 rounded-full border border-red-500/30 animate-ping opacity-20" />
+              <div className="absolute h-36 w-36 rounded-full border border-red-500/20" />
+              <div className="absolute h-24 w-24 rounded-full border border-dashed border-amber-500/40" />
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-red-500/60 bg-[#1f1013] text-red-400 shadow-[0_0_36px_rgba(239,68,68,0.4)]">
+                <Activity size={26} />
               </div>
 
               {/* Data packet satellite dots */}
               <motion.span
                 animate={{ rotate: 360 }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
                 className="absolute inset-0 block"
               >
-                <span className="absolute top-1 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-accent shadow-[0_0_8px_#cce885]" />
+                <span className="absolute top-1 left-1/2 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-red-400 shadow-[0_0_10px_#ef4444]" />
+                <span className="absolute bottom-1 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-amber-400 shadow-[0_0_8px_#f59e0b]" />
               </motion.span>
             </div>
           </div>
 
-          <div className="flex items-center justify-between border-t border-line/60 pt-3 text-[10px] font-mono text-muted">
-            <span>MODEL: SCALED_SVM + RANDOM_FOREST</span>
-            <span>LATENCY: &lt; 0.05ms</span>
+          {/* Bottom Telemetry Ticker */}
+          <div className="flex items-center justify-between border-t border-red-500/20 pt-3 text-[10px] font-mono text-muted">
+            <span className="flex items-center gap-1.5 text-red-300">
+              <Binary size={12} />
+              <span>INTRUSION_BENCHMARK: MULTI_CLASS</span>
+            </span>
+            <span className="text-faint">LATENCY: &lt; 0.04ms</span>
           </div>
         </div>
       </div>
@@ -74,15 +84,15 @@ export default function ProjectArtwork({ id }: ProjectArtworkProps) {
 
   if (id === "alexa-voice-assistant") {
     return (
-      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl border border-line-strong bg-gradient-to-br from-[#12151b] via-[#090a0d] to-void p-6 md:p-8">
-        {/* Subtle acoustic amber/olive aura */}
-        <div className="pointer-events-none absolute -inset-10 bg-[radial-gradient(circle_at_50%_50%,rgba(223,155,86,0.12),transparent_70%)]" />
+      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[32px] border border-amber/30 bg-gradient-to-br from-[#1c140d] via-[#0d0905] to-void p-6 md:p-9 shadow-[0_24px_50px_rgba(223,155,86,0.12)]">
+        {/* Subtle acoustic golden glow */}
+        <div className="pointer-events-none absolute -inset-10 bg-[radial-gradient(circle_at_50%_50%,rgba(223,155,86,0.18),transparent_70%)]" />
 
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.14]"
           style={{
-            backgroundImage: `radial-gradient(rgba(223,155,86,0.35) 1px, transparent 1px)`,
-            backgroundSize: "26px 26px",
+            backgroundImage: `radial-gradient(rgba(223,155,86,0.4) 1px, transparent 1px)`,
+            backgroundSize: "24px 24px",
           }}
         />
 
@@ -90,34 +100,37 @@ export default function ProjectArtwork({ id }: ProjectArtworkProps) {
           <div className="flex items-center justify-between text-[11px] font-mono text-amber">
             <span className="flex items-center gap-2">
               <Mic size={15} />
-              <span>ACOUSTIC_INFERENCE.NLP</span>
+              <span>ACOUSTIC_SPECTRUM // VOICE.AI</span>
             </span>
-            <span className="rounded-full border border-amber/30 bg-amber/10 px-2.5 py-0.5 text-[10px] text-ivory">
-              LEXICAL PARSER
+            <span className="rounded-full border border-amber/40 bg-amber/10 px-3 py-0.5 text-[10px] text-amber-200 font-semibold tracking-wider">
+              INTENT: PARSED
             </span>
           </div>
 
           {/* Harmonic Equalizer Waveform Art */}
-          <div className="relative my-auto flex items-end justify-center gap-2.5 py-4 h-32">
-            {[38, 64, 25, 92, 55, 100, 78, 30, 88, 45, 70, 35].map((height, i) => (
+          <div className="relative my-auto flex items-end justify-center gap-2.5 py-4 h-36">
+            {[40, 72, 28, 95, 58, 100, 82, 35, 90, 48, 75, 38, 62, 25].map((height, i) => (
               <motion.div
                 key={i}
                 animate={{ height: [`${height * 0.35}%`, `${height}%`, `${height * 0.25}%`] }}
                 transition={{
-                  duration: 1.5 + (i % 4) * 0.2,
+                  duration: 1.4 + (i % 5) * 0.2,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: i * 0.07,
+                  delay: i * 0.06,
                 }}
-                className="w-2.5 rounded-full bg-gradient-to-t from-amber/20 via-amber to-ivory shadow-[0_0_12px_rgba(223,155,86,0.3)]"
+                className="w-2.5 rounded-full bg-gradient-to-t from-amber/20 via-amber to-ivory shadow-[0_0_14px_rgba(223,155,86,0.4)]"
                 style={{ height: `${height}%` }}
               />
             ))}
           </div>
 
-          <div className="flex items-center justify-between border-t border-line/60 pt-3 text-[10px] font-mono text-muted">
-            <span>INTENT_MAPPING: REALTIME</span>
-            <span>SAMPLE_RATE: 44.1kHz</span>
+          <div className="flex items-center justify-between border-t border-amber/20 pt-3 text-[10px] font-mono text-muted">
+            <span className="flex items-center gap-1.5 text-amber-200">
+              <Volume2 size={12} />
+              <span>SAMPLE_RATE: 44.1kHz // STEREO</span>
+            </span>
+            <span className="text-faint">NLP_PIPELINE: STREAMING</span>
           </div>
         </div>
       </div>
@@ -126,15 +139,15 @@ export default function ProjectArtwork({ id }: ProjectArtworkProps) {
 
   // Collabify AI artwork
   return (
-    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl border border-line-strong bg-gradient-to-br from-[#12151b] via-[#090a0d] to-void p-6 md:p-8">
-      <div className="pointer-events-none absolute -inset-10 bg-[radial-gradient(circle_at_50%_50%,rgba(204,232,133,0.12),transparent_70%)]" />
+    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[32px] border border-accent/30 bg-gradient-to-br from-[#131910] via-[#090d07] to-void p-6 md:p-9 shadow-[0_24px_50px_rgba(204,232,133,0.12)]">
+      <div className="pointer-events-none absolute -inset-10 bg-[radial-gradient(circle_at_50%_50%,rgba(204,232,133,0.16),transparent_70%)]" />
 
-      {/* Hexagonal mesh pattern */}
+      {/* Hexagonal collaborative lattice */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.14]"
+        className="pointer-events-none absolute inset-0 opacity-[0.16]"
         style={{
           backgroundImage: `linear-gradient(45deg, rgba(204,232,133,0.2) 25%, transparent 25%), linear-gradient(-45deg, rgba(204,232,133,0.2) 25%, transparent 25%)`,
-          backgroundSize: "30px 30px",
+          backgroundSize: "28px 28px",
         }}
       />
 
@@ -142,40 +155,43 @@ export default function ProjectArtwork({ id }: ProjectArtworkProps) {
         <div className="flex items-center justify-between text-[11px] font-mono text-accent">
           <span className="flex items-center gap-2">
             <Users size={15} />
-            <span>DISTRIBUTED_SYNTHESIS</span>
+            <span>COLLABORATIVE_SYNTHESIS // LLM</span>
           </span>
-          <span className="rounded-full border border-accent/30 bg-accent-soft px-2.5 py-0.5 text-[10px] text-ivory">
-            LLM AGENTIC
+          <span className="rounded-full border border-accent/40 bg-accent-soft px-3 py-0.5 text-[10px] text-ivory font-semibold tracking-wider">
+            CANVAS: SYNCED
           </span>
         </div>
 
         {/* Distributed Nodes Network Artwork */}
         <div className="relative my-auto flex items-center justify-center py-4">
-          <div className="relative flex h-36 w-full max-w-[260px] items-center justify-center">
-            {/* Center Core Hub */}
-            <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl border border-accent bg-surface-elevated text-accent shadow-[0_0_32px_rgba(204,232,133,0.35)]">
+          <div className="relative flex h-36 w-full max-w-[280px] items-center justify-center">
+            {/* Center Core Orchestration Hub */}
+            <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl border border-accent bg-[#172014] text-accent shadow-[0_0_36px_rgba(204,232,133,0.4)]">
               <Layers size={26} />
             </div>
 
             {/* Orbiting Satellite microservices */}
-            <div className="absolute left-2 top-2 flex items-center gap-1.5 rounded-lg border border-line bg-surface px-2.5 py-1 text-[9px] font-mono text-ivory">
-              <Cpu size={10} className="text-accent" />
-              <span>FASTAPI</span>
+            <div className="absolute left-2 top-2 flex items-center gap-1.5 rounded-lg border border-line bg-surface px-3 py-1 text-[9px] font-mono text-ivory">
+              <Cpu size={11} className="text-accent" />
+              <span>FASTAPI.SRV</span>
             </div>
-            <div className="absolute right-2 top-2 flex items-center gap-1.5 rounded-lg border border-line bg-surface px-2.5 py-1 text-[9px] font-mono text-ivory">
-              <Sparkles size={10} className="text-olive" />
-              <span>DOC.LLM</span>
+            <div className="absolute right-2 top-2 flex items-center gap-1.5 rounded-lg border border-line bg-surface px-3 py-1 text-[9px] font-mono text-ivory">
+              <Sparkles size={11} className="text-olive" />
+              <span>LLM.CONTEXT</span>
             </div>
-            <div className="absolute bottom-2 flex items-center gap-1.5 rounded-lg border border-line bg-surface px-2.5 py-1 text-[9px] font-mono text-muted">
-              <Radio size={10} className="text-amber" />
-              <span>REALTIME.SYNC</span>
+            <div className="absolute bottom-2 flex items-center gap-1.5 rounded-lg border border-line bg-surface px-3 py-1 text-[9px] font-mono text-muted">
+              <Radio size={11} className="text-amber" />
+              <span>SHARED_CANVAS</span>
             </div>
           </div>
         </div>
 
-        <div className="flex items-center justify-between border-t border-line/60 pt-3 text-[10px] font-mono text-muted">
-          <span>PIPELINE: ASYNC_ORCHESTRATOR</span>
-          <span>STATE: MULTI_TENANT</span>
+        <div className="flex items-center justify-between border-t border-accent/20 pt-3 text-[10px] font-mono text-muted">
+          <span className="flex items-center gap-1.5 text-accent">
+            <Network size={12} />
+            <span>MICROSERVICES: MODULAR</span>
+          </span>
+          <span className="text-faint">SYNC_ENGINE: REALTIME</span>
         </div>
       </div>
     </div>

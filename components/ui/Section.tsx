@@ -23,11 +23,11 @@ export default function Section({
       <div className="mx-auto max-w-6xl">
         <Reveal className="mb-14 md:mb-20">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-xs font-semibold text-olive">{index}</span>
+            <span className="font-mono text-xs font-bold text-olive">{index}</span>
             <span className="h-[1px] w-8 bg-olive/40" />
             <p className="section-label">{label}</p>
           </div>
-          <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tightest text-ivory sm:text-4xl md:text-5xl">
+          <h2 className="mt-4 font-display text-3xl font-black tracking-tightest text-ivory sm:text-4xl md:text-5xl leading-tight">
             {title}
           </h2>
           {description && (

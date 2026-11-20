@@ -4,33 +4,33 @@ import { motion } from "framer-motion";
 import Section from "./ui/Section";
 import Reveal from "./ui/Reveal";
 import { profile } from "@/data/portfolio";
-import { Cpu, Database, Network, ShieldCheck, GraduationCap, CheckCircle } from "lucide-react";
+import { Cpu, Database, Network, ShieldCheck, GraduationCap, CheckCircle, Terminal, Sparkles, Orbit } from "lucide-react";
 import { cardItem, staggerContainer } from "@/lib/animations";
 
 const focusAreas = [
   {
     icon: Cpu,
-    title: "Machine Learning & AI",
-    desc: "Developing pattern recognition models, predictive algorithms, and integrating LLMs into robust software applications.",
-    tag: "Tensor & Statistical Models",
+    title: "Artificial Intelligence & Models",
+    desc: "Developing high-precision pattern recognition, statistical classifiers, and integrating large language models into modular production pipelines.",
+    tag: "TENSORS // PYTORCH",
   },
   {
     icon: Database,
-    title: "Data Science & Pipelines",
-    desc: "End-to-end data processing, feature engineering, exploratory analysis, and structured dataset curation using Python and SQL.",
-    tag: "ETL & Feature Discovery",
+    title: "Data Science & Feature Discovery",
+    desc: "End-to-end dataset preprocessing, exploratory mathematical analysis, and structured dataset curation using Python, SQL, NumPy, and Pandas.",
+    tag: "ETL // NORMALIZATION",
   },
   {
     icon: Network,
-    title: "Software Engineering",
-    desc: "Architecting modular, maintainable codebases with performant REST APIs using FastAPI, Flask, and modern JavaScript.",
-    tag: "Microservices & APIs",
+    title: "Software Engineering & APIs",
+    desc: "Architecting modular, maintainable codebases with performant REST APIs using FastAPI, Flask, asynchronous workflows, and modern JavaScript.",
+    tag: "REST // MICROSERVICES",
   },
   {
     icon: ShieldCheck,
-    title: "Practical Security & Integrity",
+    title: "Defensive Telemetry & Integrity",
     desc: "Focusing on secure data handling, network intrusion detection methodologies, and disciplined software development practices.",
-    tag: "Defensive Telemetry",
+    tag: "SECURITY // TELEMETRY",
   },
 ];
 
@@ -39,7 +39,7 @@ export default function About() {
     <Section
       id="about"
       index="01"
-      label="Profile & Philosophy"
+      label="CHAPTER 01 // GENESIS"
       title="Engineering Practical Intelligence"
       description="A disciplined engineering mindset blending mathematical data modeling with reliable, scalable software."
     >
@@ -49,7 +49,7 @@ export default function About() {
           <motion.div
             whileHover={{ y: -2 }}
             transition={{ duration: 0.3 }}
-            className="flex h-full flex-col justify-between rounded-[32px] border border-line-strong bg-gradient-to-b from-surface via-surface to-void p-7 md:p-12 shadow-[0_24px_50px_rgba(0,0,0,0.6)]"
+            className="flex h-full flex-col justify-between rounded-[36px] border border-line-strong bg-gradient-to-b from-[#151720] via-[#0d0f15] to-void p-8 md:p-12 shadow-[0_24px_60px_rgba(0,0,0,0.7)]"
           >
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 rounded-full border border-olive/30 bg-olive-soft px-3.5 py-1 font-mono text-xs text-olive font-medium">
@@ -66,6 +66,10 @@ export default function About() {
                   {paragraph}
                 </p>
               ))}
+
+              <p className="text-sm leading-relaxed text-ivory-muted/90 font-mono">
+                My work is driven by the conviction that machine intelligence should be rigorously validated, mathematically sound, and delivered through clean, resilient software architecture.
+              </p>
             </div>
 
             <div className="mt-8 border-t border-line/60 pt-6">
